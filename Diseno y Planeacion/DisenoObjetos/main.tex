@@ -18,6 +18,7 @@
         \vspace{0.5cm}
         \LARGE
         
+        \textbf{Proyecto final}
             
         \vspace{1.5cm}
             
@@ -38,11 +39,16 @@
 
 \tableofcontents
 \newpage
+
+\section{Introduccion}\label{intro}
+A continuacion se declararán los objetos que habra en el videojuego, esto con el fin de tener un vista a lo que se debera de implementar y tener una idea amplia de que elementos tendra cada clase, tambien se mostrara como los objetos interactuaran unos con los otros. igualmente se explicara como los usuarios podran desarrollar el videojuego para llegar al objetivo final.
+
+
 \section{Modelamiento de objetos}\label{intro}
 
-//La clase MainCharacter sera el diseño del personaje principal, este tendra atributos privados, asi mismo metodos publicos .Ademas tendra herencia.La clase MainCharacter es fundamental ya que nos permitira interactuar con los enemigos y obtaculos en la escena.\\
+--La clase MainCharacter sera el diseño del personaje principal, este tendra atributos privados, asi mismo metodos publicos .Ademas tendra herencia.La clase MainCharacter es fundamental ya que permitira al usuario una interaccion con los enemigos y obtaculos en la escena.\\
 \\
-class MainCharacter:public QObject,public QGraphicsItem\\
+class MainCharacter:public QGraphicsItem\\
 \lbrace\\
 private:\\
 
@@ -75,12 +81,9 @@ public:\\
     
     void MoverArribaPlataforma();\\
     
-public slots:\\
-
-    void Calcular();\\
 \rbrace\\
 
-//Esta es la clase enemigo con atributos privados y metodos publicos, se generara el movimiento del enemigo apartir de la propia clase, este podra disparar a el personaje principal para que este no cumpla su objetivo.\\
+--La clase enemigo con atributos privados y metodos publicos, se encargara de crear el enemigo u obstaculo, este podra disparar a el personaje principal para que este no cumpla su objetivo. Tenga en cuenta que seran varios tipos de enemigos por ende cada uno sera una clase diferente y que ademas de los atributos privados o metodos publicos que se encuentran en la clase Enemigointeligente habran muchos mas atributos y metodos, ya que cada enemigo tendra diferente movimiento ya sea gravitacional,amortiguado, armonico simple, etc.\\
 \\
 class EnemigoInteligente:public QGraphicsItem.\\
 \lbrace\\
@@ -90,18 +93,14 @@ private:\\
     
     double Posiciony;
     
-    double Posicionx2;
-    
-    double Posiciony2;
-    
     double ancho;
     
     double alto;
     
-    int Op;
+    double Amplitud;
     
-    int LiS,LiI,Incremento;
-    
+    double ConstanteAmoriguador;
+
     int CambioDerecha;
     
     int CambioLado;\\
@@ -114,14 +113,12 @@ public:\\
     void paint();
     
     void Disparo();\\
-public slots:\\
 
-    void move();\\
 \rbrace\\
 
-//La clase proyectil con atributos privados y metodos publicos, se podra modelar un proyectil con movimiento fisico caracteristico esto con el fin de destruir enemigos o el personaje principal.\\
+--La clase proyectil con atributos privados y metodos publicos, se podra modelar un proyectil con movimiento parabolico esto con el fin de destruir enemigos o el personaje principal.\\
 \\
-class Proyectil:public QObject,public QGraphicsItem\\
+class Proyectil:public QGraphicsItem\\
 \lbrace\\
 private:\\
 
@@ -160,7 +157,7 @@ public slots:\\
     void move();\\
 \rbrace\\
 
-//La clase Vista sera la encargada de mostrar el status del personaje. Recibira a partir del personaje tanto el puntaje que vaya adquiriendo o la vida que pierda.\\
+--La clase Vista sera la encargada de mostrar el status del personaje. Recibira a partir del personaje tanto el puntaje que vaya adquiriendo o la vida que pierda.\\
 \\
 class Vista: public QGraphicsTextItem\\
 \lbrace\\
@@ -182,13 +179,13 @@ private:\\
     int Puntaje;\\
 \rbrace\\
 
-//La clase escena con atributos privados, metodos publico,slots publicos, podremos mostrar los personajes y obstaculos que nos permitiran crear un juego. Asi mismo interactuarán cada uno de los objetos creados por medio de sistemas fisicos.\\
+--La clase escena con atributos privados, metodos publico,slots publicos, podremos crear la interfaz grafica que nos permitira mostrar los personajes y obstaculos, asi mismo sera donde interactuarán cada uno de los objetos creados por medio de sistemas fisicos. Tambien habra un apartado donde se pondra cada uno de los niveles que el usuario o usuarios podran jugar.\\
 \\
-class MainWindow :public QMainWindow\\
+class Escena :public QMainWindow\\
 \lbrace\\ 
 private:\\
 
-    Ui::MainWindow *ui;
+    Ui::Escena *ui;
 
     QGraphicsScene *ventana;
 
@@ -203,7 +200,7 @@ private:\\
     int Nivel;\\
 public:\\
 
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow();
     
     ~MainWindow();
 
@@ -214,8 +211,10 @@ public slots:\\
 
     void spawn();
 
-    void disparar();\\
 \rbrace\\
 
+\section{Desarrollo}\label{intro}
+
+Para el desarrollo del juego el usuario en cada nivel debera de esquivar los diferentes obstaculos, destruir a los enemigos y derrotar al jefe, de este ultimo podra obtener el nucleo y avanzar hasta ganar el juego. El jugador tendra cierta cantidad de vida, y se vera reducida cada vez que un enemigo lo golpee, el juego acabará cuando la vida del jugador llegue a cero. En caso de que sean dos jugadores, si almenos uno muere el juego acaba.
 
 \end{document}
