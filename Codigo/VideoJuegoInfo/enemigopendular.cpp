@@ -54,7 +54,7 @@ void EnemigoPendular::actualizar_posicion()
 
     if(Flag == true)
     {
-        Hijo = new EnemigoInteligente(10,10,Scene,this->pos().x(),this->pos().y(),Apuntador_Flag,Character,Puntaje);
+        Hijo = new EnemigoInteligente(10,10,Scene,this->pos().x(),this->pos().y(),Apuntador_Flag,Character,Puntaje,1);
         Scene->addItem(Hijo);
         Flag = false;
     }

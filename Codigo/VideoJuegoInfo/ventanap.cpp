@@ -8,13 +8,14 @@ VentanaP::VentanaP(QWidget *parent)
     ui->setupUi(this);
 
     punta = 0;
-    punta_2 = punta;
+    punta_2 = 0;
     Puntaje_Global = &punta;
 
     Parametros = new Vista();
     Timer_1 = new QTimer;
 
-    Nivel1();
+    //Nivel1();
+    Nivel2();
 
 /*
 //    Ventana_2 = new QGraphicsScene();
@@ -127,6 +128,47 @@ void VentanaP::Nivel1()
 
     connect(Timer_1,SIGNAL(timeout()),this,SLOT(Cronometro()));
     Timer_1->start(1000);
+
+}
+
+void VentanaP::Nivel2()
+{
+
+    Ventana_2 = new QGraphicsScene();
+    ui->graphicsView->setScene(Ventana_2);
+    ui->graphicsView->setSceneRect(0,0,1100,500);
+
+    Ventana_2->addLine(QLineF(10,450,1100,450),QPen(Qt::black));
+
+    Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_2,Parametros);
+    Ventana_2->addItem(Player);
+
+    Parametros->setPos(0,35);
+    Ventana_2->addItem(Parametros);
+
+    Platform = new Trampolines(1050,430);
+    Ventana_2->addItem(Platform);
+
+    Platform = new Trampolines(850,230);
+    Ventana_2->addItem(Platform);
+
+    Platform = new Trampolines(600,100);
+    Ventana_2->addItem(Platform);
+
+    ObstaculoEnemy = new EnemigoAmortiguado(200,230,20);
+    Ventana_2->addItem(ObstaculoEnemy);
+
+    ObstaculoEnemy = new EnemigoAmortiguado(700,230,17);
+    Ventana_2->addItem(ObstaculoEnemy);
+
+    SmartEnemy = new EnemigoInteligente(10,10,Ventana_2,700,440,Puntaje_Global,1000,720,2);
+    Ventana_2->addItem(SmartEnemy);
+
+    EnemigoExplosion = new EnemigoMeteoritos(230,30,230,400,Ventana_2);
+    Ventana_2->addItem(EnemigoExplosion);
+
+    EnemigoExplosion = new EnemigoMeteoritos(405,150,405,670,Ventana_2);
+    Ventana_2->addItem(EnemigoExplosion);
 
 }
 

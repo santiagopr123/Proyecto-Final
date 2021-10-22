@@ -9,25 +9,31 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    bala_caidalibre.cpp \
     balamovarmsim.cpp \
     balasimple.cpp \
     enemigoamortiguado.cpp \
     enemigointeligente.cpp \
+    enemigometioritos.cpp \
     enemigopendular.cpp \
     main.cpp \
     personajeprincipal.cpp \
     proyectilesparabolicos.cpp \
+    trampolines.cpp \
     ventanap.cpp \
     vista.cpp
 
 HEADERS += \
+    bala_caidalibre.h \
     balamovarmsim.h \
     balasimple.h \
     enemigoamortiguado.h \
     enemigointeligente.h \
+    enemigometioritos.h \
     enemigopendular.h \
     personajeprincipal.h \
     proyectilesparabolicos.h \
+    trampolines.h \
     ventanap.h \
     vista.h
 

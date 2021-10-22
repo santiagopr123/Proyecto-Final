@@ -16,6 +16,10 @@
 #include "vista.h"
 #include "personajeprincipal.h"
 #include "proyectilesparabolicos.h"
+#include "trampolines.h"
+#include "enemigoamortiguado.h"
+#include "enemigometioritos.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class VentanaP; }
@@ -52,6 +56,19 @@ private:
 
     QTimer *Timer_1;
 
+
+
+
+    //Desde Aqui Variables Segundo Nivel
+
+    EnemigoMeteoritos *EnemigoExplosion;
+    Trampolines *Platform;
+    EnemigoAmortiguado *ObstaculoEnemy;
+    EnemigoInteligente *SmartEnemy;
+
+
     void Nivel1();
+    void Nivel2();
+
 };
 #endif // VENTANAP_H

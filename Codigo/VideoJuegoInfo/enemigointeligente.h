@@ -30,13 +30,16 @@ private:
     double Vida;
     int contador;
     int *Puntaje;
+    int Li_S,Li_I;
+    int Opcion;
 
     QGraphicsScene *Scene;
     PersonajePrincipal *Character;
     balamovarmsim *Bullet;
 
 public:
-    EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y, bool *Flag_newEnemy,PersonajePrincipal *Personaje,int *ApuntadorPuntaje);
+    EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y, bool *Flag_newEnemy,PersonajePrincipal *Personaje,int *ApuntadorPuntaje,int Op);
+    EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y,int *ApuntadorPuntaje,int Lis,int Lii,int Op);
     ~EnemigoInteligente();
 
     QRectF boundingRect() const;
