@@ -6,7 +6,7 @@ balamovarmsim::balamovarmsim(double Pos_x, double Pos_y, int Long_N, int Op, QGr
     Posicion_y = Pos_y;
     Scene = Scene_Aux;
     Longitud_Natural = Long_N;
-    delta = 0.1;
+    delta = 0.4;
     alto = 10;
     ancho = 10;
     masa = 10;
@@ -22,7 +22,7 @@ balamovarmsim::balamovarmsim(double Pos_x, double Pos_y, int Long_N, int Op, QGr
    connect(Timer,SIGNAL(timeout()),this,SLOT(MoveBullet()));
 
     setPos(Posicion_x, Posicion_y+Longitud_Natural);
-    Timer->start(10);
+    Timer->start(30);
 }
 
 balamovarmsim::~balamovarmsim()
@@ -44,19 +44,32 @@ void balamovarmsim::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
 
 void balamovarmsim::MoveBullet()
 {
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(int i=0; i < colliding_items.size(); ++i)
+    {
+        QGraphicsItem *Elemento = colliding_items[i];
+        if(typeid(BalaSimple) == typeid(*Elemento))
+        {
+            Scene->removeItem(Elemento);
+            Scene->removeItem(this);
+            delete Elemento;
+            delete this;
+        }
+    }
+
     Posicion_y = Amplitud*cos(Frecuencia_angular*delta);
     if(Option == 0)
     {
-        Posicion_x-=2;
+        Posicion_x-=5;
     }
     else if(Option == 1)
     {
-        Posicion_x+=2;
+        Posicion_x+=5;
     }
 
 
     setPos(Posicion_x,Posicion_y+Longitud_Natural);
-    delta+=0.1;
+    delta+=0.4;
 
     if(Posicion_x <50 || Posicion_x > 1400)
     {

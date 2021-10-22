@@ -6,6 +6,8 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <QKeyEvent>
+#include <QTimer>
+#include <QPen>
 
 #include "balamovarmsim.h"
 #include "balasimple.h"
@@ -13,6 +15,7 @@
 #include "enemigopendular.h"
 #include "vista.h"
 #include "personajeprincipal.h"
+#include "proyectilesparabolicos.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class VentanaP; }
@@ -28,6 +31,10 @@ public:
 
     void keyPressEvent(QKeyEvent *event);
 
+public slots:
+
+    void Cronometro();
+
 private:
     Ui::VentanaP *ui;
 
@@ -38,7 +45,13 @@ private:
 
     EnemigoPendular *Pendulo;
 
+    ProyectilesParabolicos *Bomb;
+
     int *Puntaje_Global;
-    int punta,punta_2;
+    int punta,punta_2,ContadorCrono,ContadorProyectilesP;
+
+    QTimer *Timer_1;
+
+    void Nivel1();
 };
 #endif // VENTANAP_H

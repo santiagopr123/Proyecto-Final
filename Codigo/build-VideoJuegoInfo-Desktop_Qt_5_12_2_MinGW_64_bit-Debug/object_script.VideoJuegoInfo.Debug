@@ -4,6 +4,7 @@ debug/enemigointeligente.o
 debug/enemigopendular.o
 debug/main.o
 debug/personajeprincipal.o
+debug/proyectilesparabolicos.o
 debug/ventanap.o
 debug/vista.o
 debug/moc_balamovarmsim.o
@@ -11,4 +12,5 @@ debug/moc_balasimple.o
 debug/moc_enemigointeligente.o
 debug/moc_enemigopendular.o
 debug/moc_personajeprincipal.o
+debug/moc_proyectilesparabolicos.o
 debug/moc_ventanap.o

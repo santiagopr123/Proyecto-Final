@@ -32,6 +32,8 @@ private:
     bool Flag;
     bool *Apuntador_Flag;
 
+    int *Puntaje;
+
 
     EnemigoInteligente *Hijo;
     QGraphicsScene *Scene;
@@ -40,7 +42,7 @@ private:
     int Contador;
 
 public:
-    EnemigoPendular(QGraphicsScene *Scene_Aux,PersonajePrincipal *Personaje);
+    EnemigoPendular(QGraphicsScene *Scene_Aux,PersonajePrincipal *Personaje,int *ApuntadorPuntaje);
     ~EnemigoPendular();
 
     void calcular_variables();

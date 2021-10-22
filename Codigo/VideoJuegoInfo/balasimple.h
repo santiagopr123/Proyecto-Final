@@ -22,11 +22,10 @@ private:
     int Option;
     double Desplazamiento;
 
-    int *puntaje;
     QGraphicsScene *Scene;
     QTimer * timer;
 public:
-    BalaSimple(int a, int al,int *P,int Op,double pos_x,double pos_y,QGraphicsScene *Scene_Aux);
+    BalaSimple(int a, int al,int Op,double pos_x,double pos_y,QGraphicsScene *Scene_Aux);
     ~BalaSimple();
 
     QRectF boundingRect() const;

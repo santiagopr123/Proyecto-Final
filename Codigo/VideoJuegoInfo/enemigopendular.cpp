@@ -1,12 +1,13 @@
 #include "enemigopendular.h"
 
-EnemigoPendular::EnemigoPendular(QGraphicsScene *Scene_Aux,PersonajePrincipal *Personaje)
+EnemigoPendular::EnemigoPendular(QGraphicsScene *Scene_Aux, PersonajePrincipal *Personaje, int *ApuntadorPuntaje)
 {
     Contador = 0;
     Scene = Scene_Aux;
     Flag = true;
     Apuntador_Flag = &Flag;
     Character = Personaje;
+    Puntaje = ApuntadorPuntaje;
 
     Angulo_Inicial = asin(Posicion_x/Longitud);
     Velocidad_Angular_Inicial = 0;
@@ -42,15 +43,19 @@ void EnemigoPendular::actualizar_posicion()
     Posicion_y = Longitud*cos(Angulo_Inicial);
     setPos(Posicion_x+500,Posicion_y-50);
 
+    if(this->collidesWithItem(Character))
+    {
+        Character->RestarVida(1);
+        Character->setPosicion_y(this->pos().y()+20);
+    }
+
     Velocidad_Angular_Inicial = Velocidad_Angular;
     Angulo_Inicial = Angulo;
 
-    //Contador++;
     if(Flag == true)
     {
-        Hijo = new EnemigoInteligente(10,10,Scene,this->pos().x(),this->pos().y(),Apuntador_Flag,Character);
+        Hijo = new EnemigoInteligente(10,10,Scene,this->pos().x(),this->pos().y(),Apuntador_Flag,Character,Puntaje);
         Scene->addItem(Hijo);
-        //Contador = 0;
         Flag = false;
     }
 }

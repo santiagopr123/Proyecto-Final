@@ -11,6 +11,7 @@
 
 #include "personajeprincipal.h"
 #include "balamovarmsim.h"
+#include "balasimple.h"
 
 class EnemigoInteligente:public QObject,public QGraphicsItem
 {
@@ -23,15 +24,19 @@ private:
     double Gravedad;
     double velocidad;
     double Posicion_x,Posicion_y;
-    QTimer *Timer,*Timer_2;
+    QTimer *Timer;
     bool *Flag_Aux;
     int Incremento;
+    double Vida;
+    int contador;
+    int *Puntaje;
 
     QGraphicsScene *Scene;
     PersonajePrincipal *Character;
     balamovarmsim *Bullet;
+
 public:
-    EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y, bool *Flag_newEnemy,PersonajePrincipal *Personaje);
+    EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y, bool *Flag_newEnemy,PersonajePrincipal *Personaje,int *ApuntadorPuntaje);
     ~EnemigoInteligente();
 
     QRectF boundingRect() const;
@@ -39,8 +44,8 @@ public:
 
 public slots:
 
-    void Move();
-    void CreateTheBullet();
+    void MoveAnDCreateBullet();
+
 };
 
 #endif // ENEMIGOINTELIGENTE_H

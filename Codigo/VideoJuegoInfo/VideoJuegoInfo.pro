@@ -11,19 +11,23 @@ CONFIG += c++11
 SOURCES += \
     balamovarmsim.cpp \
     balasimple.cpp \
+    enemigoamortiguado.cpp \
     enemigointeligente.cpp \
     enemigopendular.cpp \
     main.cpp \
     personajeprincipal.cpp \
+    proyectilesparabolicos.cpp \
     ventanap.cpp \
     vista.cpp
 
 HEADERS += \
     balamovarmsim.h \
     balasimple.h \
+    enemigoamortiguado.h \
     enemigointeligente.h \
     enemigopendular.h \
     personajeprincipal.h \
+    proyectilesparabolicos.h \
     ventanap.h \
     vista.h
 

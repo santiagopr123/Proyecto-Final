@@ -4,18 +4,28 @@
 Vista::Vista(QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
     Salud = 1000;
-    setPlainText(QString("vidas: ")+ QString::number(Salud));
+    PuntajeP = 0;
+    Tiempo = 45;
+    setPlainText(QString("Salud: ")+ QString::number(Salud)+"\nPuntaje: "+QString::number(PuntajeP)+"\nSobrevive: "+QString::number(Tiempo));
     setDefaultTextColor(Qt::red);
     setFont(QFont("times",16));
 }
 
-void Vista::decrease(int CantidadVP)
+void Vista::decreaseHealth(double CantidadVP)
 {
     Salud-=CantidadVP;
-    setPlainText(QString("vidas: ")+ QString::number(Salud));
+    setPlainText(QString("Salud: ")+ QString::number(Salud)+"\nPuntaje: "+QString::number(PuntajeP)+"\nSobrevive: "+QString::number(Tiempo));
 }
 
-int Vista::getvida()
+void Vista::IncreaseScore(int CantidadPP)
 {
-    return Salud;
+    PuntajeP+=CantidadPP;
+    setPlainText(QString("Salud: ")+ QString::number(Salud)+"\nPuntaje: "+QString::number(PuntajeP)+"\nSobrevive: "+QString::number(Tiempo));
+}
+
+void Vista::DecreaseTimeofsurvival()
+{
+    Tiempo-=1;
+    setPlainText(QString("Salud: ")+ QString::number(Salud)+"\nPuntaje: "+QString::number(PuntajeP)+"\nSobrevive: "+QString::number(Tiempo));
+
 }

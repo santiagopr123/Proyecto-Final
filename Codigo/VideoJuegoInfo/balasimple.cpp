@@ -1,6 +1,6 @@
 #include "balasimple.h"
 
-BalaSimple::BalaSimple(int a, int al,int *P,int Op,double pos_x,double pos_y,QGraphicsScene *Scene_Aux)
+BalaSimple::BalaSimple(int a, int al, int Op, double pos_x, double pos_y, QGraphicsScene *Scene_Aux)
 {
     ancho = a;
     alto = al;
@@ -16,7 +16,6 @@ BalaSimple::BalaSimple(int a, int al,int *P,int Op,double pos_x,double pos_y,QGr
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(50);
-    puntaje = P;
     Scene = Scene_Aux;
 }
 
@@ -37,31 +36,6 @@ void BalaSimple::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 void BalaSimple::move()
 {
-//    QList<QGraphicsItem*> colliding_items = collidingItems();
-//    for(int i=0; i < colliding_items.size(); ++i)
-//    {
-//        QGraphicsItem *Elemento = colliding_items[i];
-//        if(typeid(enemigo) == typeid(*Elemento))
-//        {
-//            Window_2->removeItem(colliding_items[i]);
-//            Window_2->removeItem(this);
-//            delete colliding_items[i];
-//            delete this;
-//            *puntaje = *puntaje+1;
-//        }
-//        else if(typeid(Bala_MAS) == typeid(*Elemento))
-//        {
-//            Window_2->removeItem(colliding_items[i]);
-//            Window_2->removeItem(this);
-//            delete colliding_items[i];
-//            delete this;
-//        }
-//        else if(typeid(Enemigo_MAS) == typeid(*Elemento))
-//        {
-//            Window_2->removeItem(this);
-//            delete this;
-//        }
-//    }
 
     if(Option == 0)
     {

@@ -24,21 +24,22 @@ private:
     double Velocidad_x,Velocidad_y;
     double Aceleracion_x,Aceleracion_y;
     double delta;
-    double Vida;
-    int *Puntaje;
+    double Vida,Vida_Aux;
     int Disparos,Contador;
 
 
     bool flag = true;
 
     BalaSimple *Bullet;
-    QTimer *Timer,*Timer_2;
+    QTimer *Timer;
     QGraphicsScene *Scene;
     Vista *Parametros_Pantalla;
 
 public:
-    PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,int *Pu,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros);
-    QRectF boundingRect() const;//Para el color
+    PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros);
+    ~PersonajePrincipal();
+
+    QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
 
     void MoverDerecha();
@@ -47,9 +48,11 @@ public:
     void MoverArribaPlataforma();
     void Disparar();
 
+    void setPosicion_y(double value);
+    void RestarVida(int CantidadV);
+
 public slots:
     void Calcular();
-    void Recarga();
 };
 
 #endif // PERSONAJEPRINCIPAL_H

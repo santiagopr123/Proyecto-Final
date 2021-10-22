@@ -4,6 +4,7 @@ release/enemigointeligente.o
 release/enemigopendular.o
 release/main.o
 release/personajeprincipal.o
+release/proyectilesparabolicos.o
 release/ventanap.o
 release/vista.o
 release/moc_balamovarmsim.o
@@ -11,4 +12,5 @@ release/moc_balasimple.o
 release/moc_enemigointeligente.o
 release/moc_enemigopendular.o
 release/moc_personajeprincipal.o
+release/moc_proyectilesparabolicos.o
 release/moc_ventanap.o

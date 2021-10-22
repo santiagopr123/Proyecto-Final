@@ -10,6 +10,8 @@
 #include <QPixmap>
 #include <QDebug>
 
+#include "balasimple.h"
+
 class balamovarmsim:public QObject,public QGraphicsItem
 {
     Q_OBJECT

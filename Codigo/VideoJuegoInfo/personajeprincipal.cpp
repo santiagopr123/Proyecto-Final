@@ -1,6 +1,6 @@
 #include "personajeprincipal.h"
 
-PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_y, double Vel_x, double Vel_y, double Ace_x, double Ace_y, int *Pu, QGraphicsScene *Scene_Aux, Vista *Aux_Parametros)
+PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_y, double Vel_x, double Vel_y, double Ace_x, double Ace_y, QGraphicsScene *Scene_Aux, Vista *Aux_Parametros)
 {
     ancho = An;
     alto = Al;
@@ -11,22 +11,23 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_
     Aceleracion_x = Ace_x;
     Aceleracion_y = Ace_y;
     Vida = 1000;
-    Puntaje = Pu;
+    Vida_Aux = Vida;
     Scene = Scene_Aux;
     Disparos = 2;
     Parametros_Pantalla = Aux_Parametros;
-
-    Timer = new QTimer();
-    connect(Timer,SIGNAL(timeout()),this,SLOT(Calcular()));
-
-    Timer_2 = new QTimer();
-    connect(Timer_2,SIGNAL(timeout()),this,SLOT(Recarga()));
+    delta = 0.15;
+    Contador = 0;
 
     setPos(Posicion_x,Posicion_y);
 
-    Timer->start(20);
-    Timer_2->start(3500);
+    Timer = new QTimer();
+    connect(Timer,SIGNAL(timeout()),this,SLOT(Calcular()));
+    Timer->start(30);
+}
 
+PersonajePrincipal::~PersonajePrincipal()
+{
+    delete Timer;
 }
 
 QRectF PersonajePrincipal::boundingRect() const
@@ -90,7 +91,7 @@ void PersonajePrincipal::Disparar()
 {
     if(Disparos > 0 && Disparos < 3)
     {
-        Bullet = new BalaSimple(10,4,Puntaje,1,pos().x(),pos().y(),Scene);
+        Bullet = new BalaSimple(10,4,1,pos().x(),pos().y(),Scene);
         Scene->addItem(Bullet);
         Disparos--;
     }
@@ -98,25 +99,21 @@ void PersonajePrincipal::Disparar()
 
 void PersonajePrincipal::Calcular()
 {
+    Contador++;
+    if(Contador == 117)
+    {
+        Disparos = 2;
+        Contador = 0;
+    }
+
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for(int i=0; i < colliding_items.size(); ++i)
     {
         QGraphicsItem *Elemento = colliding_items[i];
-//        if(typeid(Plataformas) == typeid(*Elemento))
-//        {
-//            this->MoverArribaPlataforma();
-//        }
-//        else if(typeid (Bala_CaidaLibre) == typeid(*Elemento))
-//        {
-//            Vida = Vida-120;
-//            Parametros_Pantalla->decrease(120);
-//            Scene->removeItem(Elemento);
-//            delete Elemento;
-//        }
         if(typeid(balamovarmsim) == typeid (*Elemento))
         {
             Vida = Vida-50;
-            Parametros_Pantalla->decrease(50);
+            Parametros_Pantalla->decreaseHealth(50);
             Scene->removeItem(Elemento);
             delete Elemento;
         }
@@ -136,13 +133,16 @@ void PersonajePrincipal::Calcular()
             Posicion_y = 440;
             flag = false;
         }
-
     }
-
 }
 
-void PersonajePrincipal::Recarga()
+void PersonajePrincipal::setPosicion_y(double value)
 {
-    Disparos = 2;
+    Posicion_y = value;
 }
 
+void PersonajePrincipal::RestarVida(int CantidadV)
+{
+    Vida-=CantidadV;
+    Parametros_Pantalla->decreaseHealth(CantidadV);
+}
