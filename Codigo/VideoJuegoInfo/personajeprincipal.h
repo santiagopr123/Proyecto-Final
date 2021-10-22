@@ -11,6 +11,8 @@
 #include "balasimple.h"
 #include "balamovarmsim.h"
 #include "vista.h"
+#include "trampolines.h"
+#include "door.h"
 
 class PersonajePrincipal:public QObject, public QGraphicsItem
 {
@@ -29,6 +31,7 @@ private:
 
 
     bool flag = true;
+    bool level_2;
 
     BalaSimple *Bullet;
     QTimer *Timer;
@@ -50,6 +53,8 @@ public:
 
     void setPosicion_y(double value);
     void RestarVida(int CantidadV);
+
+    bool getLevel_2() const;
 
 public slots:
     void Calcular();

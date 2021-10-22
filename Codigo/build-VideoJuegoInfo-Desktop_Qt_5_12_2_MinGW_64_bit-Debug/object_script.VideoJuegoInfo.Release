@@ -1,6 +1,7 @@
 release/bala_caidalibre.o
 release/balamovarmsim.o
 release/balasimple.o
+release/door.o
 release/enemigoamortiguado.o
 release/enemigointeligente.o
 release/enemigometioritos.o

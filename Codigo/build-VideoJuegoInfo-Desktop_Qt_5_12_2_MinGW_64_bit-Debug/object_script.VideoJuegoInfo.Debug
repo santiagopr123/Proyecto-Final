@@ -1,6 +1,7 @@
 debug/bala_caidalibre.o
 debug/balamovarmsim.o
 debug/balasimple.o
+debug/door.o
 debug/enemigoamortiguado.o
 debug/enemigointeligente.o
 debug/enemigometioritos.o

@@ -19,6 +19,7 @@
 #include "trampolines.h"
 #include "enemigoamortiguado.h"
 #include "enemigometioritos.h"
+#include "door.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -52,7 +53,7 @@ private:
     ProyectilesParabolicos *Bomb;
 
     int *Puntaje_Global;
-    int punta,punta_2,ContadorCrono,ContadorProyectilesP;
+    int punta,punta_2,ContadorCrono,ContadorProyectilesP,Nivel;
 
     QTimer *Timer_1;
 
@@ -69,6 +70,7 @@ private:
 
     void Nivel1();
     void Nivel2();
+    void Nivel3();
 
 };
 #endif // VENTANAP_H

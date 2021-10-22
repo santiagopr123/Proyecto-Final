@@ -12,6 +12,7 @@
 #include "personajeprincipal.h"
 #include "balamovarmsim.h"
 #include "balasimple.h"
+#include "door.h"
 
 class EnemigoInteligente:public QObject,public QGraphicsItem
 {
@@ -36,10 +37,11 @@ private:
     QGraphicsScene *Scene;
     PersonajePrincipal *Character;
     balamovarmsim *Bullet;
+    Door *NextLevel;
 
 public:
     EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y, bool *Flag_newEnemy,PersonajePrincipal *Personaje,int *ApuntadorPuntaje,int Op);
-    EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y,int *ApuntadorPuntaje,int Lis,int Lii,int Op);
+    EnemigoInteligente(int a, int al,QGraphicsScene *Scene_Aux,double Pos_x,double Pos_y,PersonajePrincipal *Personaje,int *ApuntadorPuntaje,int Lis,int Lii,int Op);
     ~EnemigoInteligente();
 
     QRectF boundingRect() const;
