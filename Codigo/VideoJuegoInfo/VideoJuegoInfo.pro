@@ -12,10 +12,12 @@ SOURCES += \
     bala_caidalibre.cpp \
     balamovarmsim.cpp \
     balasimple.cpp \
+    door.cpp \
     enemigoamortiguado.cpp \
     enemigointeligente.cpp \
     enemigometioritos.cpp \
     enemigopendular.cpp \
+    enemigosimple.cpp \
     main.cpp \
     personajeprincipal.cpp \
     proyectilesparabolicos.cpp \
@@ -27,10 +29,12 @@ HEADERS += \
     bala_caidalibre.h \
     balamovarmsim.h \
     balasimple.h \
+    door.h \
     enemigoamortiguado.h \
     enemigointeligente.h \
     enemigometioritos.h \
     enemigopendular.h \
+    enemigosimple.h \
     personajeprincipal.h \
     proyectilesparabolicos.h \
     trampolines.h \

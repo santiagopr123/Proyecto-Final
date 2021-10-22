@@ -19,3 +19,4 @@ void Trampolines::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 {
     painter->drawRect(boundingRect());
 }
+

@@ -27,7 +27,7 @@ EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux,
 
 }
 
-EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux, double Pos_x, double Pos_y, int *ApuntadorPuntaje, int Lis, int Lii, int Op)
+EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux, double Pos_x, double Pos_y, PersonajePrincipal *Personaje, int *ApuntadorPuntaje, int Lis, int Lii, int Op)
 {
     ancho = a;
     alto = al;
@@ -37,6 +37,7 @@ EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux,
     Puntaje = ApuntadorPuntaje;
     Li_I = Lii;
     Li_S = Lis;
+    Character = Personaje;
 
     Opcion = Op;
     Posicion_x = Pos_x;
@@ -74,6 +75,12 @@ void EnemigoInteligente::paint(QPainter *painter, const QStyleOptionGraphicsItem
 void EnemigoInteligente::MoveAnDCreateBullet()
 {
 
+
+    if(this->collidesWithItem(Character))
+    {
+        Character->RestarVida(1);
+    }
+
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for(int i=0; i < colliding_items.size(); ++i)
     {
@@ -94,6 +101,8 @@ void EnemigoInteligente::MoveAnDCreateBullet()
                 }
                 else if(Opcion == 2)
                 {
+                    NextLevel = new Door(600,200);
+                    Scene->addItem(NextLevel);
                     *Puntaje +=100;
                     Scene->removeItem(this);
                     delete this;
@@ -142,11 +151,6 @@ void EnemigoInteligente::MoveAnDCreateBullet()
 
             contador = 0;
         }
-
-        if(this->collidesWithItem(Character))
-        {
-            Character->RestarVida(1);
-        }
     }
     else if(Opcion == 2)
     {
@@ -161,6 +165,24 @@ void EnemigoInteligente::MoveAnDCreateBullet()
         Posicion_x+=Incremento;
 
         setPos(Posicion_x,Posicion_y);
+
+        contador++;
+
+        if(contador >= 35)
+        {
+            if(Posicion_x-550 < Character->pos().x() && Posicion_x > Character->pos().x())
+            {
+                Bullet = new balamovarmsim(this->pos().x(),this->pos().y(),this->pos().y(),0,Scene);
+                Scene->addItem(Bullet);
+            }
+            else if( Character->pos().x() > Posicion_x && Posicion_x+550 > Character->pos().x())
+            {
+                Bullet = new balamovarmsim(this->pos().x(),this->pos().y(),this->pos().y(),1,Scene);
+                Scene->addItem(Bullet);
+            }
+
+            contador = 0;
+        }
     }
 
 }

@@ -1,5 +1,10 @@
 #include "personajeprincipal.h"
 
+bool PersonajePrincipal::getLevel_2() const
+{
+    return level_2;
+}
+
 PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_y, double Vel_x, double Vel_y, double Ace_x, double Ace_y, QGraphicsScene *Scene_Aux, Vista *Aux_Parametros)
 {
     ancho = An;
@@ -17,6 +22,7 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_
     Parametros_Pantalla = Aux_Parametros;
     delta = 0.15;
     Contador = 0;
+    level_2 = false;
 
     setPos(Posicion_x,Posicion_y);
 
@@ -64,27 +70,35 @@ void PersonajePrincipal::MoverArriba()
 
 void PersonajePrincipal::MoverArribaPlataforma()
 {
-    if(this->pos().y() < 100)
+    if(this->pos().y() < 100 && this->pos().x() >= 550)
     {
         Velocidad_x = 0;
-        Velocidad_y = -20;
+        Velocidad_y = -35;
         Aceleracion_y = 10;
         flag = true;
     }
-    else if(this->pos().y() < 270  && this->pos().y() > 100)
-    {
-        Velocidad_x = 0;
-        Velocidad_y = -55;
-        Aceleracion_y = 10;
-        flag = true;
-    }
-    else
+    else if(this->pos().y() < 270  && this->pos().y() > 100 && this->pos().x() >= 550 )
     {
         Velocidad_x = 0;
         Velocidad_y = -70;
         Aceleracion_y = 10;
         flag = true;
     }
+    else if(this->pos().x() >= 550)
+    {
+        Velocidad_x = 0;
+        Velocidad_y = -70;
+        Aceleracion_y = 10;
+        flag = true;
+    }
+    else if(this->pos().x()<540 && this->pos().y() < 400)
+    {
+        Velocidad_x = 0;
+        Velocidad_y = -40;
+        Aceleracion_y = 10;
+        flag = true;
+    }
+
 }
 
 void PersonajePrincipal::Disparar()
@@ -116,6 +130,15 @@ void PersonajePrincipal::Calcular()
             Parametros_Pantalla->decreaseHealth(50);
             Scene->removeItem(Elemento);
             delete Elemento;
+        }
+        else if(typeid(Trampolines) == typeid (*Elemento))
+        {
+
+            this->MoverArribaPlataforma();
+        }
+        else if(typeid(Door) == typeid (*Elemento))
+        {
+            level_2 = true;
         }
     }
 
