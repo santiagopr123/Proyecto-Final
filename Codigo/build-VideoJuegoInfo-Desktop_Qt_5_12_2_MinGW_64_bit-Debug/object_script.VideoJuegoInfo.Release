@@ -6,6 +6,7 @@ release/enemigoamortiguado.o
 release/enemigointeligente.o
 release/enemigometioritos.o
 release/enemigopendular.o
+release/enemigosimple.o
 release/main.o
 release/personajeprincipal.o
 release/proyectilesparabolicos.o
@@ -19,6 +20,7 @@ release/moc_enemigoamortiguado.o
 release/moc_enemigointeligente.o
 release/moc_enemigometioritos.o
 release/moc_enemigopendular.o
+release/moc_enemigosimple.o
 release/moc_personajeprincipal.o
 release/moc_proyectilesparabolicos.o
 release/moc_ventanap.o

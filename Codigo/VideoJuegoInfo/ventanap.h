@@ -20,6 +20,7 @@
 #include "enemigoamortiguado.h"
 #include "enemigometioritos.h"
 #include "door.h"
+#include "enemigosimple.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -66,6 +67,8 @@ private:
     Trampolines *Platform;
     EnemigoAmortiguado *ObstaculoEnemy;
     EnemigoInteligente *SmartEnemy;
+
+    EnemigoSimple *Enemy;
 
 
     void Nivel1();

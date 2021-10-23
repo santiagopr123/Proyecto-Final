@@ -39,7 +39,7 @@ void ProyectilesParabolicos::actualizarposicion()
     posicion_y = posicion_y+(velocidad_y*delta)+(0.5*gravedad*delta*delta);
     setPos(posicion_x,posicion_y);
 
-    if(this->pos().y() > 400)
+    if(this->pos().y() > 440)
     {
         Scenes->removeItem(this);
         delete this;

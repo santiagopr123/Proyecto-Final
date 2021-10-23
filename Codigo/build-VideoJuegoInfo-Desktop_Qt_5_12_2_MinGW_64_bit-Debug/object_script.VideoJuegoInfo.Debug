@@ -6,6 +6,7 @@ debug/enemigoamortiguado.o
 debug/enemigointeligente.o
 debug/enemigometioritos.o
 debug/enemigopendular.o
+debug/enemigosimple.o
 debug/main.o
 debug/personajeprincipal.o
 debug/proyectilesparabolicos.o
@@ -19,6 +20,7 @@ debug/moc_enemigoamortiguado.o
 debug/moc_enemigointeligente.o
 debug/moc_enemigometioritos.o
 debug/moc_enemigopendular.o
+debug/moc_enemigosimple.o
 debug/moc_personajeprincipal.o
 debug/moc_proyectilesparabolicos.o
 debug/moc_ventanap.o

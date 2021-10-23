@@ -15,7 +15,8 @@ VentanaP::VentanaP(QWidget *parent)
     Timer_1 = new QTimer;
 
     //Nivel1();
-    Nivel2();
+    //Nivel2();
+    Nivel3();
 }
 
 VentanaP::~VentanaP()
@@ -26,25 +27,44 @@ VentanaP::~VentanaP()
 
 void VentanaP::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_A)
+    if(Nivel != 3)
     {
-        Player->MoverIzquierda();
-    }
-    else if(event->key() == Qt::Key_D)
-    {
-        Player->MoverDerecha();
-    }
-    else if(event->key() == Qt::Key_W)
-    {
-        if(Player->pos().y()>400)
+        if(event->key() == Qt::Key_A)
         {
-                Player->MoverArriba();
+            Player->MoverIzquierda();
+        }
+        else if(event->key() == Qt::Key_D)
+        {
+            Player->MoverDerecha();
+        }
+        else if(event->key() == Qt::Key_W)
+        {
+            if(Player->pos().y()>400)
+            {
+                    Player->MoverArriba();
+            }
+        }
+        else if(event->key() == Qt::Key_Space)
+        {
+            Player->Disparar();
         }
     }
-    else if(event->key() == Qt::Key_Space)
+    else if(Nivel == 3)
     {
-        Player->Disparar();
+        if(event->key() == Qt::Key_A)
+        {
+            Player->MoverIzquierda();
+        }
+        else if(event->key() == Qt::Key_D)
+        {
+            Player->MoverDerecha();
+        }
+        else if(event->key() == Qt::Key_Space)
+        {
+            Player->Disparar();
+        }
     }
+
 }
 
 void VentanaP::Cronometro()
@@ -96,6 +116,34 @@ void VentanaP::Cronometro()
         if(Player->getLevel_2() == true)
         {
             Timer_1->stop();
+        }
+    }
+    else if(Nivel == 3)
+    {
+        static int ContadorBombs = 0;
+
+        ContadorBombs++;
+        if(ContadorBombs%4 == 0)
+        {
+            int Opcion = 1+rand()%(3-1);
+            int Velocidad = 40+rand()%(101-40);
+            if(Opcion == 1)
+            {
+                Bomb = new ProyectilesParabolicos(1050,400,-Velocidad,45,Ventana_2);
+                Ventana_2->addItem(Bomb);
+            }
+            else if(Opcion == 2)
+            {
+                Bomb = new ProyectilesParabolicos(0,400,Velocidad,-45,Ventana_2);
+                Ventana_2->addItem(Bomb);
+            }
+        }
+
+        if(ContadorBombs%3 == 0)
+        {
+            int num = 20 + rand()%(1101-20);
+            EnemigoSimple *enemy = new EnemigoSimple(40,40,num,0,Ventana_2);
+            Ventana_2->addItem(enemy);
         }
     }
 
@@ -176,6 +224,18 @@ void VentanaP::Nivel2()
 void VentanaP::Nivel3()
 {
 
+    Ventana_2 = new QGraphicsScene();
+    ui->graphicsView->setScene(Ventana_2);
+    ui->graphicsView->setSceneRect(0,0,1100,500);
+
+    Nivel = 3;
+
+    Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_2,Parametros);
+    Ventana_2->addItem(Player);
+
+
+    connect(Timer_1,SIGNAL(timeout()),this,SLOT(Cronometro()));
+    Timer_1->start(1000);
 
 }
 

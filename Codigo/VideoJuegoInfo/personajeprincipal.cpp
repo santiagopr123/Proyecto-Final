@@ -105,7 +105,7 @@ void PersonajePrincipal::Disparar()
 {
     if(Disparos > 0 && Disparos < 3)
     {
-        Bullet = new BalaSimple(10,4,1,pos().x(),pos().y(),Scene);
+        Bullet = new BalaSimple(10,4,0,pos().x(),pos().y(),Scene);
         Scene->addItem(Bullet);
         Disparos--;
     }
