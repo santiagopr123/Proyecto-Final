@@ -34,7 +34,7 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_
     delta = 0.15;
     Contador = 0;
     level_2 = false;
-    OpcionBala = OpB;
+    OpcionPersonaje = OpB;
 
     setPos(Posicion_x,Posicion_y);
 
@@ -62,7 +62,7 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,
     delta = 0.15;
     Contador = 0;
     level_2 = false;
-    OpcionBala = OpB;
+    OpcionPersonaje = OpB;
 
     setPos(Posicion_x,Posicion_y);
 
@@ -141,23 +141,35 @@ void PersonajePrincipal::MoverArribaPlataforma()
 
 }
 
-void PersonajePrincipal::Disparar()
+void PersonajePrincipal::DisparaArriba()
 {
-
     if(Disparos > 0 && Disparos < 3)
     {
-        if(OpcionBala == 0)
-        {
-            Bullet = new BalaSimple(10,4,0,pos().x(),pos().y(),Scene);
-            Scene->addItem(Bullet);
-            Disparos--;
-        }
-        else if(OpcionBala == 1)
-        {
-            Bullet = new BalaSimple(10,4,1,pos().x(),pos().y(),Scene);
-            Scene->addItem(Bullet);
-            Disparos--;
-        }
+        Bullet = new BalaSimple(10,4,0,pos().x(),pos().y(),Scene);
+        Scene->addItem(Bullet);
+        Disparos--;
+    }
+}
+
+void PersonajePrincipal::DispararDerecha()
+{
+    if(Disparos > 0 && Disparos < 3)
+    {
+
+        Bullet = new BalaSimple(10,4,1,pos().x(),pos().y(),Scene);
+        Scene->addItem(Bullet);
+        Disparos--;
+    }
+}
+
+void PersonajePrincipal::DispararIzquierda()
+{
+    if(Disparos > 0 && Disparos < 3)
+    {
+
+        Bullet = new BalaSimple(10,4,2,pos().x(),pos().y(),Scene);
+        Scene->addItem(Bullet);
+        Disparos--;
     }
 }
 
@@ -177,14 +189,30 @@ void PersonajePrincipal::Calcular()
         if(typeid(balamovarmsim) == typeid (*Elemento))
         {
             Vida = Vida-50;
-            Parametros_Pantalla->decreaseHealth(50);
+
+            if(OpcionPersonaje == 1)
+            {
+                Parametros_Pantalla->decreaseHealthP1(50);
+            }
+            else
+            {
+                Parametros_Pantalla->decreaseHealthP2(50);
+            }
+
             Scene->removeItem(Elemento);
             delete Elemento;
         }
         else if(typeid (ProyectilesParabolicos) == typeid (*Elemento))
         {
             Vida = Vida-60;
-            Parametros_Pantalla->decreaseHealth(50);
+            if(OpcionPersonaje == 1)
+            {
+                Parametros_Pantalla->decreaseHealthP1(60);
+            }
+            else
+            {
+                Parametros_Pantalla->decreaseHealthP2(60);
+            }
             Scene->removeItem(Elemento);
             delete Elemento;
         }
@@ -224,5 +252,12 @@ void PersonajePrincipal::setPosicion_y(double value)
 void PersonajePrincipal::RestarVida(int CantidadV)
 {
     Vida-=CantidadV;
-    Parametros_Pantalla->decreaseHealth(CantidadV);
+    if(OpcionPersonaje == 1)
+    {
+        Parametros_Pantalla->decreaseHealthP1(CantidadV);
+    }
+    else
+    {
+        Parametros_Pantalla->decreaseHealthP2(CantidadV);
+    }
 }

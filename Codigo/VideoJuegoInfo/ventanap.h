@@ -50,6 +50,7 @@ private:
 
     Vista *Parametros;
     PersonajePrincipal *Player;
+    PersonajePrincipal *Player_1;
 
     EnemigoPendular *Pendulo;
 
@@ -57,13 +58,14 @@ private:
 
     int *Puntaje_Global;
     int punta,punta_2,ContadorCrono,Nivel;
-    int VidaGlobal;
+    int VidaGlobal,VidaGlobal_2;
+    bool Multiplayer;
 
 
     QTimer *Timer_1;
 
 
-
+    PersonajePrincipal *ArregloMultiplayer[2];
 
     //Desde Aqui Variables Segundo Nivel
 

@@ -30,7 +30,7 @@ private:
     double Vida,Vida_Aux;
     int Disparos,Contador;
     int DeltaPosx;
-    int OpcionBala;
+    int OpcionPersonaje;
 
 
     bool flag = true;
@@ -53,7 +53,10 @@ public:
     void MoverIzquierda();
     void MoverArriba();
     void MoverArribaPlataforma();
-    void Disparar();
+
+    void DisparaArriba();
+    void DispararDerecha();
+    void DispararIzquierda();
 
     void setPosicion_y(double value);
 

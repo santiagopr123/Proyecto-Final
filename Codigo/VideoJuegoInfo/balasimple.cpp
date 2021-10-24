@@ -9,6 +9,7 @@ BalaSimple::BalaSimple(int a, int al, int Op, double pos_x, double pos_y, QGraph
     Desplazamiento = 0;
 
     Option = Op;
+    Scene = Scene_Aux;
 
     timer = new QTimer();
     setPos(Posicion_x,Posicion_y);
@@ -16,7 +17,7 @@ BalaSimple::BalaSimple(int a, int al, int Op, double pos_x, double pos_y, QGraph
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(50);
-    Scene = Scene_Aux;
+
 }
 
 BalaSimple::~BalaSimple()
@@ -39,7 +40,8 @@ void BalaSimple::move()
 
     if(Option == 0)
     {
-        setPos(pos().x(),pos().y()-10);
+        Posicion_y-=10;
+        setPos(Posicion_x,Posicion_y);
         if(pos().y()-20<0)
         {
             Scene->removeItem(this);
@@ -48,9 +50,24 @@ void BalaSimple::move()
     }
     else if(Option == 1)
     {
-        setPos(pos().x()+8,pos().y());
+        Posicion_x+=8;
         Desplazamiento+=8;
-        if(Desplazamiento >=400)
+        setPos(Posicion_x,Posicion_y);
+
+        if(Desplazamiento >= 400)
+        {
+            Scene->removeItem(this);
+            delete this;
+        }
+    }
+    else if(Option == 2)
+    {
+
+        Posicion_x-=8;
+        Desplazamiento-=8;
+        setPos(Posicion_x,Posicion_y);
+
+        if(Desplazamiento <= -400)
         {
             Scene->removeItem(this);
             delete this;

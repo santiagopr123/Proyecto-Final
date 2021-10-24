@@ -14,8 +14,14 @@ VentanaP::VentanaP(QWidget *parent)
     VidaGlobal = 0;
     Puntaje_Global = &punta;
 
+    ArregloMultiplayer[0] = Player;
+    ArregloMultiplayer[1] = Player_1;
+
+    Multiplayer = true;
+    //Multiplayer = false;
+
     //Nivel1();
-    //Nivel2();
+    Nivel2();
     //Nivel3();
 
 }
@@ -40,14 +46,45 @@ void VentanaP::keyPressEvent(QKeyEvent *event)
         }
         else if(event->key() == Qt::Key_W)
         {
-            if(Player->pos().y()>400)
+            if(Player->pos().y()>415)
             {
-                    Player->MoverArriba();
+                Player->MoverArriba();
             }
         }
-        else if(event->key() == Qt::Key_Space)
+        else if(event->key() == Qt::Key_C)
         {
-            Player->Disparar();
+            Player->DispararDerecha();
+        }
+        else if(event->key() == Qt::Key_X)
+        {
+            Player->DispararIzquierda();
+        }
+
+        if(Multiplayer == true)
+        {
+            if(event->key() == Qt::Key_J)
+            {
+                Player_1->MoverIzquierda();
+            }
+            else if(event->key() == Qt::Key_L)
+            {
+                Player_1->MoverDerecha();
+            }
+            else if(event->key() == Qt::Key_I)
+            {
+                if(Player_1->pos().y()>415)
+                {
+                    Player_1->MoverArriba();
+                }
+            }
+            else if(event->key() == Qt::Key_M)
+            {
+                Player_1->DispararDerecha();
+            }
+            else if(event->key() == Qt::Key_N)
+            {
+                Player_1->DispararIzquierda();
+            }
         }
     }
     else if(Nivel == 3)
@@ -60,12 +97,27 @@ void VentanaP::keyPressEvent(QKeyEvent *event)
         {
             Player->MoverDerecha();
         }
-        else if(event->key() == Qt::Key_Space)
+        else if(event->key() == Qt::Key_X)
         {
-            Player->Disparar();
+            Player->DisparaArriba();
+        }
+
+        if(Multiplayer == true)
+        {
+            if(event->key() == Qt::Key_A)
+            {
+                Player_1->MoverIzquierda();
+            }
+            else if(event->key() == Qt::Key_D)
+            {
+                Player_1->MoverDerecha();
+            }
+            else if(event->key() == Qt::Key_X)
+            {
+                Player_1->DisparaArriba();
+            }
         }
     }
-
 }
 
 void VentanaP::Nivel1()
@@ -76,21 +128,38 @@ void VentanaP::Nivel1()
     ui->graphicsView->setScene(Ventana_1);
     ui->graphicsView->setSceneRect(0,0,1100,500);
 
-    Parametros = new Vista;
-    Parametros->setPos(0,35);
-    Ventana_1->addItem(Parametros);
-
     Ventana_1->addLine(QLineF(10,450,1100,450),QPen(Qt::black));
 
-    Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_1,Parametros,1);
-    Ventana_1->addItem(Player);
+    if(Multiplayer == true)
+    {
+        Parametros = new Vista(true);
+        Parametros->setPos(0,35);
+        Ventana_1->addItem(Parametros);
 
-    Pendulo = new EnemigoPendular(Ventana_1,Player,Puntaje_Global);
-    Ventana_1->addItem(Pendulo);
+        Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_1,Parametros,0);
+        Ventana_1->addItem(Player);
+
+        Player_1 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_1,Parametros,1);
+        Ventana_1->addItem(Player_1);
+
+        Pendulo = new EnemigoPendular(Ventana_1,Player,Player_1,Puntaje_Global);
+        Ventana_1->addItem(Pendulo);
+    }
+    else
+    {
+        Parametros = new Vista(false);
+        Parametros->setPos(0,35);
+        Ventana_1->addItem(Parametros);
+
+        Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_1,Parametros,1);
+        Ventana_1->addItem(Player);
+
+        Pendulo = new EnemigoPendular(Ventana_1,Player,Puntaje_Global);
+        Ventana_1->addItem(Pendulo);
+    }
 
     connect(Timer_1,SIGNAL(timeout()),this,SLOT(Cronometro()));
     Timer_1->start(1000);
-
 }
 
 void VentanaP::Nivel2()
@@ -101,14 +170,30 @@ void VentanaP::Nivel2()
     ui->graphicsView->setScene(Ventana_2);
     ui->graphicsView->setSceneRect(0,0,1100,500);
 
-    Parametros = new Vista(VidaGlobal,punta,true);
-    Parametros->setPos(0,35);
-    Ventana_2->addItem(Parametros);
-
     Ventana_2->addLine(QLineF(10,450,1100,450),QPen(Qt::black));
 
-    Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal,1);
-    Ventana_2->addItem(Player);
+    if(Multiplayer == true)
+    {
+        Parametros = new Vista(VidaGlobal,VidaGlobal_2,punta,true);
+        Parametros->setPos(0,35);
+        Ventana_2->addItem(Parametros);
+
+        Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal,0);
+        Ventana_2->addItem(Player);
+
+        Player_1 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal_2,1);
+        Ventana_2->addItem(Player_1);
+
+    }
+    else if(Multiplayer == false)
+    {
+        Parametros = new Vista(VidaGlobal,VidaGlobal_2,punta,false);
+        Parametros->setPos(0,35);
+        Ventana_2->addItem(Parametros);
+
+        Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal,0);
+        Ventana_2->addItem(Player);
+    }
 
     Platform = new Trampolines(1050,430);
     Ventana_2->addItem(Platform);
@@ -147,9 +232,25 @@ void VentanaP::Nivel3()
     ui->graphicsView->setScene(Ventana_3);
     ui->graphicsView->setSceneRect(0,0,1100,500);
 
-    Parametros = new Vista(VidaGlobal,punta,true);
-    Parametros->setPos(0,35);
-    Ventana_3->addItem(Parametros);
+//    Parametros = new Vista(VidaGlobal,punta,true);
+//    Parametros->setPos(0,35);
+//    Ventana_3->addItem(Parametros);
+    if(Multiplayer == true)
+    {
+        Parametros = new Vista(VidaGlobal,VidaGlobal_2,punta,true);
+        Parametros->setPos(0,35);
+        Ventana_3->addItem(Parametros);
+
+        Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal,0);
+        Ventana_3->addItem(Player);
+
+        Player_1 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal_2,1);
+        Ventana_3->addItem(Player_1);
+    }
+    else if()
+    {
+
+    }
 
     Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal,0);
     Player->setDeltaPosx(7);
@@ -171,7 +272,7 @@ void VentanaP::Cronometro()
         }
 
         static int ContadorBombs = 0;
-        if(ContadorCrono <=90 && ContadorCrono >=0)
+        if(ContadorCrono <=90 && ContadorCrono >=0 )
         {
             ContadorCrono++;
             Parametros->DecreaseTimeofsurvival();
@@ -196,9 +297,17 @@ void VentanaP::Cronometro()
         else
         {
             Timer_1->stop();
-            if(punta > 300)
+            if(punta > 300 && Multiplayer == false)
             {
                 VidaGlobal = Player->getVida();
+                Ventana_1->clear();
+                delete Ventana_1;
+                Nivel2();
+            }
+            else if(punta > 500 && Multiplayer == true)
+            {
+                VidaGlobal = Player->getVida();
+                VidaGlobal_2 = Player_1->getVida();
                 Ventana_1->clear();
                 delete Ventana_1;
                 Nivel2();
@@ -213,10 +322,11 @@ void VentanaP::Cronometro()
             punta_2 = punta;
         }
 
-        if(Player->getLevel_2() == true)
+        if(Player->getLevel_2() == true || Player_1->getLevel_2() == true )
         {
             Timer_1->stop();
             VidaGlobal = Player->getVida();
+            VidaGlobal_2 = Player_1->getVida();
             Ventana_2->clear();
             delete Ventana_2;
             Nivel3();
@@ -228,7 +338,7 @@ void VentanaP::Cronometro()
         static bool FlagParaEnemys = false,FlagParaEnemys_2 = false;
         ContadorBombs++;
 
-        if(ContadorBombs%4 == 0 && FlagParaEnemys == false)
+        if(ContadorBombs%5 == 0 && FlagParaEnemys == false)
         {
             int Opcion = 1+rand()%(3-1);
             int Velocidad = 100+rand()%(141-100);
