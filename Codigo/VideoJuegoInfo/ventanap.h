@@ -21,6 +21,8 @@
 #include "enemigometioritos.h"
 #include "door.h"
 #include "enemigosimple.h"
+#include "enemigomovcircular.h"
+#include "boss.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -44,7 +46,7 @@ public slots:
 private:
     Ui::VentanaP *ui;
 
-    QGraphicsScene *Ventana_2;
+    QGraphicsScene *Ventana_1,*Ventana_2,*Ventana_3;
 
     Vista *Parametros;
     PersonajePrincipal *Player;
@@ -54,7 +56,9 @@ private:
     ProyectilesParabolicos *Bomb;
 
     int *Puntaje_Global;
-    int punta,punta_2,ContadorCrono,ContadorProyectilesP,Nivel;
+    int punta,punta_2,ContadorCrono,Nivel;
+    int VidaGlobal;
+
 
     QTimer *Timer_1;
 
@@ -69,11 +73,15 @@ private:
     EnemigoInteligente *SmartEnemy;
 
     EnemigoSimple *Enemy;
+    Boss *EnemyBossFinal;
+    EnemigoMovCircular *EnemyCir;
 
 
     void Nivel1();
     void Nivel2();
     void Nivel3();
+
+    void EscrituraDeDatos();
 
 };
 #endif // VENTANAP_H

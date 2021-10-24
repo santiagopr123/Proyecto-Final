@@ -7,7 +7,6 @@ EnemigoSimple::EnemigoSimple(int a, int al, double Pos_x, double Pos_y, QGraphic
     alto = al;
     Posicion_x = Pos_x;
     Posicion_y = Pos_y;
-
     timer = new QTimer();
 
     connect(timer,SIGNAL(timeout()),SLOT(move()));

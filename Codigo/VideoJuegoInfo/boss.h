@@ -1,0 +1,43 @@
+#ifndef BOSS_H
+#define BOSS_H
+
+#include <QObject>
+#include <QGraphicsItem>
+#include <QGraphicsScene>
+#include <QPainter>
+#include <QTimer>
+#include <QPixmap>
+
+#include "enemigomovcircular.h"
+#include "balasimple.h"
+
+class Boss:public QObject,public QGraphicsItem
+{
+    Q_OBJECT
+private:
+    int ancho;
+    int alto;
+    QTimer *timer;
+    QGraphicsScene *Scene;
+    double DeltaDesplazamientoX;
+    double DeltaDesplazamientoY;
+    double Posicion_x,Posicion_y;
+    double Vida;
+
+    EnemigoMovCircular *Escudo_1,*Escudo_2,*Escudo_3,*Escudo_4;
+public:
+    Boss(int a, int al,double Pos_x,double Pos_y,QGraphicsScene *Scene_Aux);
+    ~Boss();
+
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
+
+    void setDeltaDesplazamientoY(double value);
+
+    void setDeltaDesplazamientoX(double value);
+
+public slots:
+    void move();
+};
+
+#endif // BOSS_H

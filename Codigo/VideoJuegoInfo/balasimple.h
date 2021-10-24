@@ -22,6 +22,7 @@ private:
     int Option;
     double Desplazamiento;
 
+
     QGraphicsScene *Scene;
     QTimer * timer;
 public:
@@ -30,6 +31,8 @@ public:
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
+
+
 
 public slots:
 

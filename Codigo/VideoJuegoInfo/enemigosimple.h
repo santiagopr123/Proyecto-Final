@@ -20,7 +20,6 @@ private:
     int alto;
     QTimer *timer;
     QGraphicsScene *Scene;
-
     double Posicion_x,Posicion_y;
 public:
     EnemigoSimple(int a, int al,double Pos_x,double Pos_y,QGraphicsScene *Scene_Aux);

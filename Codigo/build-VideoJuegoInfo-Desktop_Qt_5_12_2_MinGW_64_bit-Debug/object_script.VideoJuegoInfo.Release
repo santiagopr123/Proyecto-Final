@@ -1,10 +1,12 @@
 release/bala_caidalibre.o
 release/balamovarmsim.o
 release/balasimple.o
+release/boss.o
 release/door.o
 release/enemigoamortiguado.o
 release/enemigointeligente.o
 release/enemigometioritos.o
+release/enemigomovcircular.o
 release/enemigopendular.o
 release/enemigosimple.o
 release/main.o
@@ -16,9 +18,11 @@ release/vista.o
 release/moc_bala_caidalibre.o
 release/moc_balamovarmsim.o
 release/moc_balasimple.o
+release/moc_boss.o
 release/moc_enemigoamortiguado.o
 release/moc_enemigointeligente.o
 release/moc_enemigometioritos.o
+release/moc_enemigomovcircular.o
 release/moc_enemigopendular.o
 release/moc_enemigosimple.o
 release/moc_personajeprincipal.o
