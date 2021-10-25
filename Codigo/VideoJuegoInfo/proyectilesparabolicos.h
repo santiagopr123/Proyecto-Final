@@ -10,6 +10,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsScene>
 
+
 class ProyectilesParabolicos:public QObject,public QGraphicsItem
 {
     Q_OBJECT

@@ -7,6 +7,7 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 #include <QTimer>
+#include <QMessageBox>
 #include <QPen>
 
 #include "balamovarmsim.h"
@@ -20,6 +21,9 @@
 #include "enemigoamortiguado.h"
 #include "enemigometioritos.h"
 #include "door.h"
+#include "enemigosimple.h"
+#include "enemigomovcircular.h"
+#include "boss.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -43,30 +47,26 @@ public slots:
 private:
     Ui::VentanaP *ui;
 
-    QGraphicsScene *Ventana_2;
-
-    Vista *Parametros;
-    PersonajePrincipal *Player;
-
-    EnemigoPendular *Pendulo;
-
-    ProyectilesParabolicos *Bomb;
-
-    int *Puntaje_Global;
-    int punta,punta_2,ContadorCrono,ContadorProyectilesP,Nivel;
-
-    QTimer *Timer_1;
-
-
-
-
-    //Desde Aqui Variables Segundo Nivel
+    QGraphicsScene *Ventana_1,*Ventana_2,*Ventana_3;
+    PersonajePrincipal *Player,*Player_2;
 
     EnemigoMeteoritos *EnemigoExplosion;
-    Trampolines *Platform;
     EnemigoAmortiguado *ObstaculoEnemy;
+    Vista *Parametros,*ParametrosBoss;
     EnemigoInteligente *SmartEnemy;
+    ProyectilesParabolicos *Bomb;
+    EnemigoMovCircular *EnemyCir;
+    EnemigoPendular *Pendulo;
+    Trampolines *Platform;
+    EnemigoSimple *Enemy;
+    Boss *EnemyBossFinal;
+    QTimer *Timer_1;
 
+    int Puntaje,Puntaje_2,ContadorCrono,Nivel,VidaGlobal,VidaGlobal_2;
+    int *Puntaje_Global;   
+    bool Multiplayer,Final;
+
+    //Metodos
 
     void Nivel1();
     void Nivel2();

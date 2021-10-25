@@ -48,9 +48,9 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
 
 public slots:
-
     void MoveAnDCreateBullet();
 
 };
+
 
 #endif // ENEMIGOINTELIGENTE_H

@@ -54,6 +54,7 @@ void balamovarmsim::MoveBullet()
             Scene->removeItem(this);
             delete Elemento;
             delete this;
+            return;
         }
     }
 

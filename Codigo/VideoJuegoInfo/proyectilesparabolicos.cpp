@@ -34,12 +34,26 @@ void ProyectilesParabolicos::paint(QPainter *painter, const QStyleOptionGraphics
 
 void ProyectilesParabolicos::actualizarposicion()
 {
+
     calcularvelocidad();
     posicion_x = posicion_x+velocidad_x*delta;
     posicion_y = posicion_y+(velocidad_y*delta)+(0.5*gravedad*delta*delta);
     setPos(posicion_x,posicion_y);
 
-    if(this->pos().y() > 400)
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(int i=0; i < colliding_items.size(); ++i)
+    {
+        QGraphicsItem *Elemento = colliding_items[i];
+        if(typeid(ProyectilesParabolicos) == typeid (*Elemento))
+        {
+            Scenes->removeItem(this);
+            Scenes->removeItem(Elemento);
+            delete this;
+            delete Elemento;
+        }
+    }
+
+    if(this->pos().y() > 440)
     {
         Scenes->removeItem(this);
         delete this;

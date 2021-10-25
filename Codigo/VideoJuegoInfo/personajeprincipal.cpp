@@ -5,7 +5,17 @@ bool PersonajePrincipal::getLevel_2() const
     return level_2;
 }
 
-PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_y, double Vel_x, double Vel_y, double Ace_x, double Ace_y, QGraphicsScene *Scene_Aux, Vista *Aux_Parametros)
+void PersonajePrincipal::setDeltaPosx(int value)
+{
+    DeltaPosx = value;
+}
+
+double PersonajePrincipal::getVida() const
+{
+    return Vida;
+}
+
+PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_y, double Vel_x, double Vel_y, double Ace_x, double Ace_y, QGraphicsScene *Scene_Aux, Vista *Aux_Parametros, int OpB)
 {
     ancho = An;
     alto = Al;
@@ -18,11 +28,41 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_
     Vida = 1000;
     Vida_Aux = Vida;
     Scene = Scene_Aux;
+    DeltaPosx = 4;
     Disparos = 2;
     Parametros_Pantalla = Aux_Parametros;
     delta = 0.15;
     Contador = 0;
     level_2 = false;
+    OpcionPersonaje = OpB;
+
+    setPos(Posicion_x,Posicion_y);
+
+    Timer = new QTimer();
+    connect(Timer,SIGNAL(timeout()),this,SLOT(Calcular()));
+    Timer->start(30);
+}
+
+PersonajePrincipal::PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros,double health,int OpB)
+{
+    ancho = An;
+    alto = Al;
+    Posicion_x = Pos_x;
+    Posicion_y = Pos_y;
+    Velocidad_x = Vel_x;
+    Velocidad_y = Vel_y;
+    Aceleracion_x = Ace_x;
+    Aceleracion_y = Ace_y;
+    Vida = health;
+    Vida_Aux = Vida;
+    Scene = Scene_Aux;
+    DeltaPosx = 4;
+    Disparos = 2;
+    Parametros_Pantalla = Aux_Parametros;
+    delta = 0.15;
+    Contador = 0;
+    level_2 = false;
+    OpcionPersonaje = OpB;
 
     setPos(Posicion_x,Posicion_y);
 
@@ -50,13 +90,13 @@ void PersonajePrincipal::paint(QPainter *painter, const QStyleOptionGraphicsItem
 
 void PersonajePrincipal::MoverDerecha()
 {
-    Posicion_x+=3;
+    Posicion_x+=DeltaPosx;
     setPos(Posicion_x,Posicion_y);
 }
 
 void PersonajePrincipal::MoverIzquierda()
 {
-    Posicion_x-=3;
+    Posicion_x-=DeltaPosx;
     setPos(Posicion_x,Posicion_y);
 }
 
@@ -101,11 +141,33 @@ void PersonajePrincipal::MoverArribaPlataforma()
 
 }
 
-void PersonajePrincipal::Disparar()
+void PersonajePrincipal::DisparaArriba()
 {
     if(Disparos > 0 && Disparos < 3)
     {
+        Bullet = new BalaSimple(10,4,0,pos().x(),pos().y(),Scene);
+        Scene->addItem(Bullet);
+        Disparos--;
+    }
+}
+
+void PersonajePrincipal::DispararDerecha()
+{
+    if(Disparos > 0 && Disparos < 3)
+    {
+
         Bullet = new BalaSimple(10,4,1,pos().x(),pos().y(),Scene);
+        Scene->addItem(Bullet);
+        Disparos--;
+    }
+}
+
+void PersonajePrincipal::DispararIzquierda()
+{
+    if(Disparos > 0 && Disparos < 3)
+    {
+
+        Bullet = new BalaSimple(10,4,2,pos().x(),pos().y(),Scene);
         Scene->addItem(Bullet);
         Disparos--;
     }
@@ -127,7 +189,30 @@ void PersonajePrincipal::Calcular()
         if(typeid(balamovarmsim) == typeid (*Elemento))
         {
             Vida = Vida-50;
-            Parametros_Pantalla->decreaseHealth(50);
+
+            if(OpcionPersonaje == 1)
+            {
+                Parametros_Pantalla->decreaseHealthP1(50);
+            }
+            else
+            {
+                Parametros_Pantalla->decreaseHealthP2(50);
+            }
+
+            Scene->removeItem(Elemento);
+            delete Elemento;
+        }
+        else if(typeid (ProyectilesParabolicos) == typeid (*Elemento))
+        {
+            Vida = Vida-60;
+            if(OpcionPersonaje == 1)
+            {
+                Parametros_Pantalla->decreaseHealthP1(60);
+            }
+            else
+            {
+                Parametros_Pantalla->decreaseHealthP2(60);
+            }
             Scene->removeItem(Elemento);
             delete Elemento;
         }
@@ -167,5 +252,12 @@ void PersonajePrincipal::setPosicion_y(double value)
 void PersonajePrincipal::RestarVida(int CantidadV)
 {
     Vida-=CantidadV;
-    Parametros_Pantalla->decreaseHealth(CantidadV);
+    if(OpcionPersonaje == 1)
+    {
+        Parametros_Pantalla->decreaseHealthP1(CantidadV);
+    }
+    else
+    {
+        Parametros_Pantalla->decreaseHealthP2(CantidadV);
+    }
 }
