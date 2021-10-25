@@ -7,6 +7,7 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 #include <QTimer>
+#include <QMessageBox>
 #include <QPen>
 
 #include "balamovarmsim.h"
@@ -47,43 +48,29 @@ private:
     Ui::VentanaP *ui;
 
     QGraphicsScene *Ventana_1,*Ventana_2,*Ventana_3;
-
-    Vista *Parametros;
-    PersonajePrincipal *Player;
-    PersonajePrincipal *Player_1;
-
-    EnemigoPendular *Pendulo;
-
-    ProyectilesParabolicos *Bomb;
-
-    int *Puntaje_Global;
-    int punta,punta_2,ContadorCrono,Nivel;
-    int VidaGlobal,VidaGlobal_2;
-    bool Multiplayer;
-
-
-    QTimer *Timer_1;
-
-
-    PersonajePrincipal *ArregloMultiplayer[2];
-
-    //Desde Aqui Variables Segundo Nivel
+    PersonajePrincipal *Player,*Player_2;
 
     EnemigoMeteoritos *EnemigoExplosion;
-    Trampolines *Platform;
     EnemigoAmortiguado *ObstaculoEnemy;
+    Vista *Parametros,*ParametrosBoss;
     EnemigoInteligente *SmartEnemy;
-
+    ProyectilesParabolicos *Bomb;
+    EnemigoMovCircular *EnemyCir;
+    EnemigoPendular *Pendulo;
+    Trampolines *Platform;
     EnemigoSimple *Enemy;
     Boss *EnemyBossFinal;
-    EnemigoMovCircular *EnemyCir;
+    QTimer *Timer_1;
 
+    int Puntaje,Puntaje_2,ContadorCrono,Nivel,VidaGlobal,VidaGlobal_2;
+    int *Puntaje_Global;   
+    bool Multiplayer,Final;
+
+    //Metodos
 
     void Nivel1();
     void Nivel2();
     void Nivel3();
-
-    void EscrituraDeDatos();
 
 };
 #endif // VENTANAP_H

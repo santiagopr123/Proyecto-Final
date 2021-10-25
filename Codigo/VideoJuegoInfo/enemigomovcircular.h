@@ -4,9 +4,12 @@
 #include <QObject>
 #include <math.h>
 #include <QGraphicsItem>
+#include <QGraphicsScene>
 #include <QPainter>
 #include <qdebug.h>
 #include <QTimer>
+
+#include "balasimple.h"
 
 
 class EnemigoMovCircular:public QObject,public QGraphicsItem
@@ -25,9 +28,10 @@ private:
     double Angulo;
 
     QTimer *Timer;
+    QGraphicsScene *Scene;
 
 public:
-    EnemigoMovCircular(int r, double tiempo);
+    EnemigoMovCircular(int r, double tiempo,QGraphicsScene *SceneAux);
     ~EnemigoMovCircular();
 
     QRectF boundingRect() const;

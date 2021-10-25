@@ -10,12 +10,13 @@ void EnemigoMovCircular::setCentro_y(double value)
     Centro_y = value;
 }
 
-EnemigoMovCircular::EnemigoMovCircular(int r, double tiempo)
+EnemigoMovCircular::EnemigoMovCircular(int r, double tiempo, QGraphicsScene *SceneAux)
 {
     Velocidad_Angular = 2;
     DeltaTiempo = tiempo;
     radio = r;
-    Radio = 100;
+    Radio = 35;
+    Scene = SceneAux;
 
 
     Timer = new QTimer;
@@ -51,4 +52,15 @@ void EnemigoMovCircular::Move()
     DeltaTiempo+=0.07;
 
     setPos(Posicion_x,Posicion_y);
+
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+    for(int i=0; i < colliding_items.size(); ++i)
+    {
+        QGraphicsItem *Elemento = colliding_items[i];
+        if(typeid(BalaSimple) == typeid (*Elemento))
+        {
+            Scene->removeItem(Elemento);
+            delete Elemento;
+        }
+    }
 }

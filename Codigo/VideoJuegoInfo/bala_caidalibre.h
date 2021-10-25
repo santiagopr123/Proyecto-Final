@@ -25,6 +25,7 @@ private:
     QGraphicsScene *Window_2;
 
 public:
+
     Bala_CaidaLibre(int a, int al,QGraphicsScene *Window,double Pos_x,double Pos_y);
     ~Bala_CaidaLibre();
 

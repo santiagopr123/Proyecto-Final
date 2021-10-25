@@ -1,6 +1,14 @@
 #include "vista.h"
 #include <QFont>
 
+Vista::Vista(QGraphicsItem *parent): QGraphicsTextItem(parent)
+{
+    VidaBoss = 2000;
+    setPlainText(QString("SaludBoss: ")+ QString::number(VidaBoss));
+    setDefaultTextColor(Qt::green);
+    setFont(QFont("times",16));
+}
+
 Vista::Vista(bool FlagMulti, QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
     Salud_1 = 1000;
@@ -152,4 +160,11 @@ void Vista::DecreaseTimeofsurvival()
     {
         FlagTiempoLevel = true;
     }
+}
+
+void Vista::BossFinal(double CantidadVB)
+{
+    VidaBoss-=CantidadVB;
+    setPlainText(QString("SaludBoss: ")+ QString::number(VidaBoss));
+
 }

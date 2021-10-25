@@ -9,20 +9,18 @@ VentanaP::VentanaP(QWidget *parent)
 
     Timer_1 = new QTimer;
 
-    punta = 0;punta_2 = 0;
+    Puntaje = 0;Puntaje_2 = 0;
+    VidaGlobal = 0;VidaGlobal_2 = 0;
+    Puntaje_Global = &Puntaje;
     ContadorCrono = 0;
-    VidaGlobal = 0;
-    Puntaje_Global = &punta;
 
-    ArregloMultiplayer[0] = Player;
-    ArregloMultiplayer[1] = Player_1;
+    //Multiplayer = true;
+    Multiplayer = false;
 
-    Multiplayer = true;
-    //Multiplayer = false;
-
-    //Nivel1();
-    Nivel2();
+    Nivel1();
+    //Nivel2();
     //Nivel3();
+
 
 }
 
@@ -64,26 +62,26 @@ void VentanaP::keyPressEvent(QKeyEvent *event)
         {
             if(event->key() == Qt::Key_J)
             {
-                Player_1->MoverIzquierda();
+                Player_2->MoverIzquierda();
             }
             else if(event->key() == Qt::Key_L)
             {
-                Player_1->MoverDerecha();
+                Player_2->MoverDerecha();
             }
             else if(event->key() == Qt::Key_I)
             {
-                if(Player_1->pos().y()>415)
+                if(Player_2->pos().y()>415)
                 {
-                    Player_1->MoverArriba();
+                    Player_2->MoverArriba();
                 }
             }
             else if(event->key() == Qt::Key_M)
             {
-                Player_1->DispararDerecha();
+                Player_2->DispararDerecha();
             }
             else if(event->key() == Qt::Key_N)
             {
-                Player_1->DispararIzquierda();
+                Player_2->DispararIzquierda();
             }
         }
     }
@@ -104,17 +102,17 @@ void VentanaP::keyPressEvent(QKeyEvent *event)
 
         if(Multiplayer == true)
         {
-            if(event->key() == Qt::Key_A)
+            if(event->key() == Qt::Key_J)
             {
-                Player_1->MoverIzquierda();
+                Player_2->MoverIzquierda();
             }
-            else if(event->key() == Qt::Key_D)
+            else if(event->key() == Qt::Key_L)
             {
-                Player_1->MoverDerecha();
+                Player_2->MoverDerecha();
             }
-            else if(event->key() == Qt::Key_X)
+            else if(event->key() == Qt::Key_M)
             {
-                Player_1->DisparaArriba();
+                Player_2->DisparaArriba();
             }
         }
     }
@@ -139,10 +137,10 @@ void VentanaP::Nivel1()
         Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_1,Parametros,0);
         Ventana_1->addItem(Player);
 
-        Player_1 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_1,Parametros,1);
-        Ventana_1->addItem(Player_1);
+        Player_2 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_1,Parametros,1);
+        Ventana_1->addItem(Player_2);
 
-        Pendulo = new EnemigoPendular(Ventana_1,Player,Player_1,Puntaje_Global);
+        Pendulo = new EnemigoPendular(Ventana_1,Player,Player_2,Puntaje_Global);
         Ventana_1->addItem(Pendulo);
     }
     else
@@ -174,20 +172,20 @@ void VentanaP::Nivel2()
 
     if(Multiplayer == true)
     {
-        Parametros = new Vista(VidaGlobal,VidaGlobal_2,punta,true);
+        Parametros = new Vista(VidaGlobal,VidaGlobal_2,Puntaje,true);
         Parametros->setPos(0,35);
         Ventana_2->addItem(Parametros);
 
         Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal,0);
         Ventana_2->addItem(Player);
 
-        Player_1 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal_2,1);
-        Ventana_2->addItem(Player_1);
+        Player_2 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal_2,1);
+        Ventana_2->addItem(Player_2);
 
     }
     else if(Multiplayer == false)
     {
-        Parametros = new Vista(VidaGlobal,VidaGlobal_2,punta,false);
+        Parametros = new Vista(VidaGlobal,VidaGlobal_2,Puntaje,false);
         Parametros->setPos(0,35);
         Ventana_2->addItem(Parametros);
 
@@ -231,30 +229,32 @@ void VentanaP::Nivel3()
     Ventana_3 = new QGraphicsScene();
     ui->graphicsView->setScene(Ventana_3);
     ui->graphicsView->setSceneRect(0,0,1100,500);
+    ParametrosBoss = new Vista;
 
-//    Parametros = new Vista(VidaGlobal,punta,true);
-//    Parametros->setPos(0,35);
-//    Ventana_3->addItem(Parametros);
     if(Multiplayer == true)
     {
-        Parametros = new Vista(VidaGlobal,VidaGlobal_2,punta,true);
+        Parametros = new Vista(VidaGlobal,VidaGlobal_2,Puntaje,true);
         Parametros->setPos(0,35);
         Ventana_3->addItem(Parametros);
 
         Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal,0);
+        Player->setDeltaPosx(7);
         Ventana_3->addItem(Player);
 
-        Player_1 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal_2,1);
-        Ventana_3->addItem(Player_1);
+        Player_2 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal_2,1);
+        Player_2->setDeltaPosx(7);
+        Ventana_3->addItem(Player_2);
     }
-    else if()
+    else if(Multiplayer == false)
     {
+        Parametros = new Vista(VidaGlobal,VidaGlobal_2,Puntaje,false);
+        Parametros->setPos(0,35);
+        Ventana_3->addItem(Parametros);
 
+        Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal,0);
+        Player->setDeltaPosx(7);
+        Ventana_3->addItem(Player);
     }
-
-    Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal,0);
-    Player->setDeltaPosx(7);
-    Ventana_3->addItem(Player);
 
     connect(Timer_1,SIGNAL(timeout()),this,SLOT(Cronometro()));
     Timer_1->start(1000);
@@ -265,20 +265,45 @@ void VentanaP::Cronometro()
 {
     if(Nivel == 1)
     {
-        if(punta > punta_2)
+        static int ContadorBombsL1 = 0;
+
+        if(Puntaje > Puntaje_2)
         {
-            Parametros->IncreaseScore(punta-punta_2);
-            punta_2 = punta;
+            Parametros->IncreaseScore(Puntaje-Puntaje_2);
+            Puntaje_2 = Puntaje;
         }
 
-        static int ContadorBombs = 0;
+        if(Multiplayer == true)
+        {
+            if(Player->getVida() < 0 || Player_2->getVida() < 0)
+            {
+                Timer_1->stop();
+                Ventana_1->clear();
+                delete Ventana_1;
+                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
+                this->hide();
+            }
+        }
+        else
+        {
+            if(Player->getVida() < 0)
+            {
+                Timer_1->stop();
+                Ventana_1->clear();
+                delete Ventana_1;
+                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
+                this->hide();
+            }
+        }
+
+
         if(ContadorCrono <=90 && ContadorCrono >=0 )
         {
             ContadorCrono++;
             Parametros->DecreaseTimeofsurvival();
 
-            ContadorBombs++;
-            if(ContadorBombs%3 == 0)
+            ContadorBombsL1++;
+            if(ContadorBombsL1%3 == 0)
             {
                 int Opcion = 1+rand()%(3-1);
                 int Velocidad = 40+rand()%(101-40);
@@ -297,17 +322,17 @@ void VentanaP::Cronometro()
         else
         {
             Timer_1->stop();
-            if(punta > 300 && Multiplayer == false)
+            if(Puntaje > 300 && Multiplayer == false)
             {
                 VidaGlobal = Player->getVida();
                 Ventana_1->clear();
                 delete Ventana_1;
                 Nivel2();
             }
-            else if(punta > 500 && Multiplayer == true)
+            else if(Puntaje > 500 && Multiplayer == true)
             {
                 VidaGlobal = Player->getVida();
-                VidaGlobal_2 = Player_1->getVida();
+                VidaGlobal_2 = Player_2->getVida();
                 Ventana_1->clear();
                 delete Ventana_1;
                 Nivel2();
@@ -316,29 +341,65 @@ void VentanaP::Cronometro()
     }
     else if(Nivel == 2)
     {
-        if(punta > punta_2)
+        if(Puntaje > Puntaje_2)
         {
-            Parametros->IncreaseScore(punta-punta_2);
-            punta_2 = punta;
+            Parametros->IncreaseScore(Puntaje-Puntaje_2);
+            Puntaje_2 = Puntaje;
         }
 
-        if(Player->getLevel_2() == true || Player_1->getLevel_2() == true )
+        if(Multiplayer == true)
         {
-            Timer_1->stop();
-            VidaGlobal = Player->getVida();
-            VidaGlobal_2 = Player_1->getVida();
-            Ventana_2->clear();
-            delete Ventana_2;
-            Nivel3();
+            if(Player->getLevel_2() == true || Player_2->getLevel_2() == true )
+            {
+                Timer_1->stop();
+                VidaGlobal = Player->getVida();
+                VidaGlobal_2 = Player_2->getVida();
+                Ventana_2->clear();
+                delete Ventana_2;
+                Nivel3();
+            }
+
+            if(Player->getVida() < 0 || Player_2->getVida() < 0)
+            {
+                Timer_1->stop();
+                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
+                this->hide();
+            }
         }
+        else if(Multiplayer == false)
+        {
+            if(Player->getLevel_2() == true)
+            {
+                Timer_1->stop();
+                VidaGlobal = Player->getVida();
+                Ventana_2->clear();
+                delete Ventana_2;
+                Nivel3();
+            }
+
+            if(Player->getVida() < 0)
+            {
+                Timer_1->stop();
+                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
+                this->hide();
+            }
+        }
+
+
     }
     else if(Nivel == 3)
     {
-        static int ContadorBombs = 0,NumEnemys = 3,TiempoJefeFinal = 0,PasosJefeFinal = 0;
+        static int ContadorBombsL3 = 0,NumEnemys = 4,TiempoJefeFinal = 0,PasosJefeFinal = 0;
         static bool FlagParaEnemys = false,FlagParaEnemys_2 = false;
-        ContadorBombs++;
 
-        if(ContadorBombs%5 == 0 && FlagParaEnemys == false)
+        if(Puntaje > Puntaje_2)
+        {
+            Parametros->IncreaseScore(Puntaje-Puntaje_2);
+            Puntaje_2 = Puntaje;
+        }
+
+        ContadorBombsL3++;
+        if(ContadorBombsL3%5 == 0 && FlagParaEnemys == false)
         {
             int Opcion = 1+rand()%(3-1);
             int Velocidad = 100+rand()%(141-100);
@@ -354,10 +415,10 @@ void VentanaP::Cronometro()
             }
         }
 
-        if(ContadorBombs%NumEnemys == 0 && FlagParaEnemys == false)
+        if(ContadorBombsL3%NumEnemys == 0 && FlagParaEnemys == false)
         {
             int num = 50 + rand()%(1051-50);
-            EnemigoSimple *enemy = new EnemigoSimple(40,40,num,0,Ventana_3);
+            EnemigoSimple *enemy = new EnemigoSimple(40,40,num,0,Ventana_3,Puntaje_Global);
             Ventana_3->addItem(enemy);
         }
 
@@ -365,12 +426,13 @@ void VentanaP::Cronometro()
         if(TiempoJefeFinal == 45)
         {
             FlagParaEnemys = true;
+            FlagParaEnemys_2 = true;
 
-            EnemyBossFinal = new Boss(20,20,500,20,Ventana_3);
+            EnemyBossFinal = new Boss(20,20,500,20,Ventana_3,ParametrosBoss);
             Ventana_3->addItem(EnemyBossFinal);
             EnemyBossFinal->setDeltaDesplazamientoY(0.5);
-
-            FlagParaEnemys_2 = true;
+            ParametrosBoss->setPos(930,35);
+            Ventana_3->addItem(ParametrosBoss);
         }
 
         if(FlagParaEnemys_2 == true)
@@ -396,6 +458,20 @@ void VentanaP::Cronometro()
                 EnemyBossFinal->setDeltaDesplazamientoX(0);
                 EnemyBossFinal->setDeltaDesplazamientoY(0.5);
             }
+
+            if(EnemyBossFinal->getVida() < 0)
+            {
+               Timer_1->stop();
+               QMessageBox::information(this,"¡En Horabuena!","Ganaste");
+               this->hide();
+            }
+            else if(EnemyBossFinal->pos().y() > 450)
+            {
+                Timer_1->stop();
+                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
+                this->hide();
+            }
         }
+
     }
 }

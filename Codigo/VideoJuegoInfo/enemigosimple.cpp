@@ -1,12 +1,13 @@
 #include "enemigosimple.h"
 
-EnemigoSimple::EnemigoSimple(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux)
+EnemigoSimple::EnemigoSimple(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux, int *ApuntadorPuntaje)
 {
     Scene = Scene_Aux;
     ancho = a;
     alto = al;
     Posicion_x = Pos_x;
     Posicion_y = Pos_y;
+    Puntaje = ApuntadorPuntaje;
     timer = new QTimer();
 
     connect(timer,SIGNAL(timeout()),SLOT(move()));
@@ -36,6 +37,7 @@ void EnemigoSimple::move()
         QGraphicsItem *Elemento = colliding_items[i];
         if(typeid(BalaSimple) == typeid (*Elemento))
         {
+            *Puntaje+=200;
             Scene->removeItem(Elemento);
             Scene->removeItem(this);
             delete Elemento;
@@ -43,6 +45,7 @@ void EnemigoSimple::move()
         }
         else if(typeid(ProyectilesParabolicos) == typeid (*Elemento))
         {
+            *Puntaje+=200;
             Scene->removeItem(Elemento);
             Scene->removeItem(this);
             delete Elemento;

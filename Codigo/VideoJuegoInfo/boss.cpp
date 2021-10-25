@@ -1,6 +1,11 @@
 #include "boss.h"
 
-Boss::Boss(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux)
+double Boss::getVida() const
+{
+    return Vida;
+}
+
+Boss::Boss(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux, Vista *Para)
 {
     Scene = Scene_Aux;
     ancho = a;
@@ -10,13 +15,18 @@ Boss::Boss(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux)
     DeltaDesplazamientoY = 5;
     DeltaDesplazamientoX = 0;
     Vida = 2000;
+    ParametrosScene = Para;
 
     timer = new QTimer();
 
-    Escudo_1 = new EnemigoMovCircular(10,0);
+    Escudo_1 = new EnemigoMovCircular(10,0,Scene);
     Scene->addItem(Escudo_1);
-    Escudo_2 = new EnemigoMovCircular(10,1.5707963267948966192313216916398);
+    Escudo_2 = new EnemigoMovCircular(10,1.5707963267948966192313216916398,Scene);
     Scene->addItem(Escudo_2);
+    Escudo_3 = new EnemigoMovCircular(10,0.78539816339744830961566084581988,Scene);
+    Scene->addItem(Escudo_3);
+    Escudo_4 = new EnemigoMovCircular(10,2.3561944901923449288469825374596,Scene);
+    Scene->addItem(Escudo_4);
 
     connect(timer,SIGNAL(timeout()),SLOT(move()));
     timer->start(50);
@@ -56,6 +66,10 @@ void Boss::move()
     Escudo_1->setCentro_y(Posicion_y);
     Escudo_2->setCentro_x(Posicion_x);
     Escudo_2->setCentro_y(Posicion_y);
+    Escudo_3->setCentro_x(Posicion_x);
+    Escudo_3->setCentro_y(Posicion_y);
+    Escudo_4->setCentro_x(Posicion_x);
+    Escudo_4->setCentro_y(Posicion_y);
 
     setPos(Posicion_x,Posicion_y);
 
@@ -67,14 +81,19 @@ void Boss::move()
         {
             Vida-=150;
             Scene->removeItem(Elemento);
+            ParametrosScene->BossFinal(150);
             delete Elemento;
             if(Vida<0)
             {
                 Scene->removeItem(this);
                 Scene->removeItem(Escudo_1);
                 Scene->removeItem(Escudo_2);
+                Scene->removeItem(Escudo_3);
+                Scene->removeItem(Escudo_4);
                 delete  Escudo_1;
                 delete Escudo_2;
+                delete  Escudo_3;
+                delete Escudo_4;
                 delete this;
             }
         }

@@ -10,6 +10,7 @@
 
 #include "enemigomovcircular.h"
 #include "balasimple.h"
+#include "vista.h"
 
 class Boss:public QObject,public QGraphicsItem
 {
@@ -19,6 +20,7 @@ private:
     int alto;
     QTimer *timer;
     QGraphicsScene *Scene;
+    Vista *ParametrosScene;
     double DeltaDesplazamientoX;
     double DeltaDesplazamientoY;
     double Posicion_x,Posicion_y;
@@ -26,7 +28,7 @@ private:
 
     EnemigoMovCircular *Escudo_1,*Escudo_2,*Escudo_3,*Escudo_4;
 public:
-    Boss(int a, int al,double Pos_x,double Pos_y,QGraphicsScene *Scene_Aux);
+    Boss(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux, Vista *Para);
     ~Boss();
 
     QRectF boundingRect() const;
@@ -35,6 +37,8 @@ public:
     void setDeltaDesplazamientoY(double value);
 
     void setDeltaDesplazamientoX(double value);
+
+    double getVida() const;
 
 public slots:
     void move();
