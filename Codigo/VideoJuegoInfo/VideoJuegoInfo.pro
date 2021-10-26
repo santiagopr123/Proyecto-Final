@@ -20,7 +20,9 @@ SOURCES += \
     enemigomovcircular.cpp \
     enemigopendular.cpp \
     enemigosimple.cpp \
+    gestorinfo.cpp \
     main.cpp \
+    menu.cpp \
     personajeprincipal.cpp \
     proyectilesparabolicos.cpp \
     trampolines.cpp \
@@ -39,6 +41,8 @@ HEADERS += \
     enemigomovcircular.h \
     enemigopendular.h \
     enemigosimple.h \
+    gestorinfo.h \
+    menu.h \
     personajeprincipal.h \
     proyectilesparabolicos.h \
     trampolines.h \
@@ -46,6 +50,7 @@ HEADERS += \
     vista.h
 
 FORMS += \
+    menu.ui \
     ventanap.ui
 
 # Default rules for deployment.

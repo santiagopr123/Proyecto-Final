@@ -9,7 +9,9 @@ release/enemigometioritos.o
 release/enemigomovcircular.o
 release/enemigopendular.o
 release/enemigosimple.o
+release/gestorinfo.o
 release/main.o
+release/menu.o
 release/personajeprincipal.o
 release/proyectilesparabolicos.o
 release/trampolines.o
@@ -25,6 +27,7 @@ release/moc_enemigometioritos.o
 release/moc_enemigomovcircular.o
 release/moc_enemigopendular.o
 release/moc_enemigosimple.o
+release/moc_menu.o
 release/moc_personajeprincipal.o
 release/moc_proyectilesparabolicos.o
 release/moc_ventanap.o

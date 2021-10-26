@@ -1,9 +1,7 @@
 #include "ventanap.h"
 #include "ui_ventanap.h"
 
-VentanaP::VentanaP(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::VentanaP)
+VentanaP::VentanaP(QWidget *parent): QMainWindow(parent),ui(new Ui::VentanaP)
 {
     ui->setupUi(this);
 
@@ -14,6 +12,9 @@ VentanaP::VentanaP(QWidget *parent)
     Puntaje_Global = &Puntaje;
     ContadorCrono = 0;
 
+    NombreU = "Santiago";
+    ClaveU = "123456";
+
     //Multiplayer = true;
     Multiplayer = false;
 
@@ -21,6 +22,28 @@ VentanaP::VentanaP(QWidget *parent)
     //Nivel2();
     //Nivel3();
 
+
+}
+
+VentanaP::VentanaP(int Level, double Salud1, double Salud2, double ScoreJ, bool HayMultijugador, QWidget *parent): QMainWindow(parent),ui(new Ui::VentanaP)
+{
+    Nivel = Level;
+    Multiplayer = HayMultijugador;
+
+    if(Nivel == 1)
+    {
+        Puntaje = 0;Puntaje_2 = 0;
+        VidaGlobal = 0;VidaGlobal_2 = 0;
+        Puntaje_Global = &Puntaje;
+        ContadorCrono = 0;
+
+    }
+    else if(Nivel == 2)
+    {
+        Puntaje = ScoreJ;Puntaje_2 = ScoreJ;
+        VidaGlobal = Salud1;VidaGlobal_2 = Salud2;
+        Puntaje_Global = &Puntaje;
+    }
 
 }
 
@@ -140,6 +163,8 @@ void VentanaP::Nivel1()
         Player_2 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_1,Parametros,1);
         Ventana_1->addItem(Player_2);
 
+        CheckPoints(NombreU,ClaveU,true,Player->getVida(),Player_2->getVida(),Puntaje,Nivel);
+
         Pendulo = new EnemigoPendular(Ventana_1,Player,Player_2,Puntaje_Global);
         Ventana_1->addItem(Pendulo);
     }
@@ -151,6 +176,8 @@ void VentanaP::Nivel1()
 
         Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_1,Parametros,1);
         Ventana_1->addItem(Player);
+
+        CheckPoints(NombreU,ClaveU,false,Player->getVida(),0,Puntaje,Nivel);
 
         Pendulo = new EnemigoPendular(Ventana_1,Player,Puntaje_Global);
         Ventana_1->addItem(Pendulo);
@@ -182,6 +209,8 @@ void VentanaP::Nivel2()
         Player_2 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal_2,1);
         Ventana_2->addItem(Player_2);
 
+        CheckPoints(NombreU,ClaveU,true,Player->getVida(),Player_2->getVida(),Puntaje,Nivel);
+
     }
     else if(Multiplayer == false)
     {
@@ -191,6 +220,8 @@ void VentanaP::Nivel2()
 
         Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_2,Parametros,VidaGlobal,0);
         Ventana_2->addItem(Player);
+
+        CheckPoints(NombreU,ClaveU,false,Player->getVida(),0,Puntaje,Nivel);
     }
 
     Platform = new Trampolines(1050,430);
@@ -244,6 +275,8 @@ void VentanaP::Nivel3()
         Player_2 = new PersonajePrincipal(20,20,35,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal_2,1);
         Player_2->setDeltaPosx(7);
         Ventana_3->addItem(Player_2);
+
+        CheckPoints(NombreU,ClaveU,true,Player->getVida(),Player_2->getVida(),Puntaje,Nivel);
     }
     else if(Multiplayer == false)
     {
@@ -254,10 +287,29 @@ void VentanaP::Nivel3()
         Player = new PersonajePrincipal(20,20,10,440,0,0,0,0,Ventana_3,Parametros,VidaGlobal,0);
         Player->setDeltaPosx(7);
         Ventana_3->addItem(Player);
+
+        CheckPoints(NombreU,ClaveU,false,Player->getVida(),0,Puntaje,Nivel);
     }
 
     connect(Timer_1,SIGNAL(timeout()),this,SLOT(Cronometro()));
     Timer_1->start(1000);
+
+}
+
+void VentanaP::CheckPoints(std::string Usuario, std::string Clave, bool CantidadUsers, double Health1, double Health2, int Score, int NivelU)
+{
+    std::ofstream EscribirDatos;
+    EscribirDatos.open("../VideoJuegoInfo/Usuarios.txt",std::ios::app);
+
+    EscribirDatos<<Usuario<<"-"<<Clave<<"-"<<bool_cast(CantidadUsers)<<"-"<<Health1<<"-"<<Health2<<"-"<<Score<<"-"<<NivelU<<std::endl;
+}
+
+const char* VentanaP::bool_cast(const bool b) {
+    return b ? "true" : "false";
+}
+
+void VentanaP::Escribir()
+{
 
 }
 

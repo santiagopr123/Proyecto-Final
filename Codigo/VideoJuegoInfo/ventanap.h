@@ -9,6 +9,8 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QPen>
+#include <fstream>
+#include <string>
 
 #include "balamovarmsim.h"
 #include "balasimple.h"
@@ -36,6 +38,7 @@ class VentanaP : public QMainWindow
 
 public:
     VentanaP(QWidget *parent = nullptr);
+    VentanaP(int Level,double Salud1,double Salud2,double ScoreJ,bool HayMultijugador,QWidget *parent = nullptr);
     ~VentanaP();
 
     void keyPressEvent(QKeyEvent *event);
@@ -62,15 +65,23 @@ private:
     Boss *EnemyBossFinal;
     QTimer *Timer_1;
 
-    int Puntaje,Puntaje_2,ContadorCrono,Nivel,VidaGlobal,VidaGlobal_2;
+    int Puntaje,Puntaje_2,ContadorCrono,Nivel;
+    double VidaGlobal,VidaGlobal_2;
     int *Puntaje_Global;   
     bool Multiplayer,Final;
+
+    std::string NombreU,ClaveU;
 
     //Metodos
 
     void Nivel1();
     void Nivel2();
     void Nivel3();
+    void CheckPoints(std::string Usuario, std::string Clave, bool CantidadUsers, double Health1, double Health2,int Score,int NivelU);
+
+    const char* bool_cast(const bool b);
+
+    void Escribir();
 
 };
 #endif // VENTANAP_H
