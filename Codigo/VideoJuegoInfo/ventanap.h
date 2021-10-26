@@ -10,7 +10,8 @@
 #include <QMessageBox>
 #include <QPen>
 #include <fstream>
-#include <string>
+#include <QDebug>
+
 
 #include "balamovarmsim.h"
 #include "balasimple.h"
@@ -26,7 +27,10 @@
 #include "enemigosimple.h"
 #include "enemigomovcircular.h"
 #include "boss.h"
+#include "gestorinfo.h"
 
+#include <string>
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class VentanaP; }
@@ -38,7 +42,7 @@ class VentanaP : public QMainWindow
 
 public:
     VentanaP(QWidget *parent = nullptr);
-    VentanaP(int Level,double Salud1,double Salud2,double ScoreJ,bool HayMultijugador,QWidget *parent = nullptr);
+    VentanaP(GestorInfo *GestorAux, QWidget *parent = nullptr);
     ~VentanaP();
 
     void keyPressEvent(QKeyEvent *event);
@@ -49,6 +53,8 @@ public slots:
 
 private:
     Ui::VentanaP *ui;
+
+    std::string NombreU,ClaveU;
 
     QGraphicsScene *Ventana_1,*Ventana_2,*Ventana_3;
     PersonajePrincipal *Player,*Player_2;
@@ -65,23 +71,19 @@ private:
     Boss *EnemyBossFinal;
     QTimer *Timer_1;
 
+    GestorInfo *SendInformation;
+
     int Puntaje,Puntaje_2,ContadorCrono,Nivel;
     double VidaGlobal,VidaGlobal_2;
     int *Puntaje_Global;   
-    bool Multiplayer,Final;
-
-    std::string NombreU,ClaveU;
+    bool Multiplayer,Final,MandarInfo;
 
     //Metodos
 
     void Nivel1();
     void Nivel2();
     void Nivel3();
-    void CheckPoints(std::string Usuario, std::string Clave, bool CantidadUsers, double Health1, double Health2,int Score,int NivelU);
 
-    const char* bool_cast(const bool b);
-
-    void Escribir();
 
 };
 #endif // VENTANAP_H

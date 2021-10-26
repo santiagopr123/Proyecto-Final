@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <string>
+#include <QDebug>
 
 #include "ventanap.h"
 #include "gestorinfo.h"
@@ -20,6 +21,9 @@ public:
     explicit Menu(QWidget *parent = nullptr);
     ~Menu();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::Menu *ui;
 
@@ -28,11 +32,11 @@ private:
 
     std::string NameUIngresado;
     std::string PasswordIngresado;
+    bool Multijugador;
 
     bool GetJuego;
 
-    void ComenzarJuego();
-
+    void cerrar();
 };
 
 #endif // MENU_H

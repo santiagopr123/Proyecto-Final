@@ -7,20 +7,34 @@ Menu::Menu(QWidget *parent) :QMainWindow(parent), ui(new Ui::Menu)
 
     NameUIngresado = "Santiago";
     PasswordIngresado = "123456";
+    Multijugador = false;
     Login = new GestorInfo(NameUIngresado,PasswordIngresado);
-    GetJuego = Login->getStartGame();
-
-    if(GetJuego == true)
-    {
-        Juego = new VentanaP;
-        this->hide();
-        Juego->setFixedSize(1140,540);
-        Juego->show();
-    }
 
 }
 
 Menu::~Menu()
 {
     delete ui;
+}
+
+void Menu::cerrar()
+{
+
+    GetJuego = Login->getStartGame();
+    if(GetJuego == true)
+    {
+        Juego = new VentanaP(Login);
+        Juego->show();
+        this->hide();
+    }
+    else
+    {
+        this->hide();
+    }
+
+}
+
+void Menu::on_pushButton_clicked()
+{
+    cerrar();
 }
