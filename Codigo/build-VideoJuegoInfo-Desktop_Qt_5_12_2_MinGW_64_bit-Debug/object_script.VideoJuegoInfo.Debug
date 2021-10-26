@@ -9,7 +9,9 @@ debug/enemigometioritos.o
 debug/enemigomovcircular.o
 debug/enemigopendular.o
 debug/enemigosimple.o
+debug/gestorinfo.o
 debug/main.o
+debug/menu.o
 debug/personajeprincipal.o
 debug/proyectilesparabolicos.o
 debug/trampolines.o
@@ -25,6 +27,7 @@ debug/moc_enemigometioritos.o
 debug/moc_enemigomovcircular.o
 debug/moc_enemigopendular.o
 debug/moc_enemigosimple.o
+debug/moc_menu.o
 debug/moc_personajeprincipal.o
 debug/moc_proyectilesparabolicos.o
 debug/moc_ventanap.o

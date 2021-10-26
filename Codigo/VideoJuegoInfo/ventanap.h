@@ -9,6 +9,9 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QPen>
+#include <fstream>
+#include <QDebug>
+
 
 #include "balamovarmsim.h"
 #include "balasimple.h"
@@ -24,7 +27,10 @@
 #include "enemigosimple.h"
 #include "enemigomovcircular.h"
 #include "boss.h"
+#include "gestorinfo.h"
 
+#include <string>
+#include <iostream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class VentanaP; }
@@ -36,6 +42,7 @@ class VentanaP : public QMainWindow
 
 public:
     VentanaP(QWidget *parent = nullptr);
+    VentanaP(GestorInfo *GestorAux, QWidget *parent = nullptr);
     ~VentanaP();
 
     void keyPressEvent(QKeyEvent *event);
@@ -46,6 +53,8 @@ public slots:
 
 private:
     Ui::VentanaP *ui;
+
+    std::string NombreU,ClaveU;
 
     QGraphicsScene *Ventana_1,*Ventana_2,*Ventana_3;
     PersonajePrincipal *Player,*Player_2;
@@ -62,15 +71,19 @@ private:
     Boss *EnemyBossFinal;
     QTimer *Timer_1;
 
-    int Puntaje,Puntaje_2,ContadorCrono,Nivel,VidaGlobal,VidaGlobal_2;
+    GestorInfo *SendInformation;
+
+    int Puntaje,Puntaje_2,ContadorCrono,Nivel;
+    double VidaGlobal,VidaGlobal_2;
     int *Puntaje_Global;   
-    bool Multiplayer,Final;
+    bool Multiplayer,Final,MandarInfo;
 
     //Metodos
 
     void Nivel1();
     void Nivel2();
     void Nivel3();
+
 
 };
 #endif // VENTANAP_H
