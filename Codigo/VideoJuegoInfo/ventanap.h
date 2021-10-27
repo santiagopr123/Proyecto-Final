@@ -28,6 +28,7 @@
 #include "enemigomovcircular.h"
 #include "boss.h"
 #include "gestorinfo.h"
+#include "fondosgame.h"
 
 #include <string>
 #include <iostream>
@@ -66,6 +67,7 @@ private:
     ProyectilesParabolicos *Bomb;
     EnemigoMovCircular *EnemyCir;
     EnemigoPendular *Pendulo;
+    FondosGame *FondoJuego;
     Trampolines *Platform;
     EnemigoSimple *Enemy;
     Boss *EnemyBossFinal;

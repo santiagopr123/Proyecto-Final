@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Imagenes/balaPersonajes.png</file>
+        <file>Imagenes/BossG.png</file>
+        <file>Imagenes/enemy.png</file>
+        <file>Imagenes/Escudoenemigo.png</file>
+        <file>Imagenes/FondoNivel1.png</file>
+        <file>Imagenes/FondoNivel3.png</file>
+        <file>Imagenes/player_1.png</file>
+        <file>Imagenes/player-2.png</file>
+        <file>Imagenes/Proyectiles.png</file>
+    </qresource>
+</RCC>

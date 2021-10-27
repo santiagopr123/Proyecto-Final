@@ -10,12 +10,12 @@ void EnemigoMovCircular::setCentro_y(double value)
     Centro_y = value;
 }
 
-EnemigoMovCircular::EnemigoMovCircular(int r, double tiempo, QGraphicsScene *SceneAux)
+EnemigoMovCircular::EnemigoMovCircular(int r, int RC, double tiempo, QGraphicsScene *SceneAux)
 {
     Velocidad_Angular = 2;
     DeltaTiempo = tiempo;
     radio = r;
-    Radio = 35;
+    Radio = RC;
     Scene = SceneAux;
 
 
@@ -37,7 +37,11 @@ QRectF EnemigoMovCircular::boundingRect() const
 
 void EnemigoMovCircular::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(boundingRect());
+
+    QPixmap pixmap(":/Imagenes/Escudoenemigo.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(1.7);
+
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }

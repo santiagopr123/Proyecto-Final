@@ -26,7 +26,9 @@ QRectF EnemigoSimple::boundingRect() const
 
 void EnemigoSimple::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/enemy.png");
+    painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+    setScale(1.7);
 }
 
 void EnemigoSimple::move()

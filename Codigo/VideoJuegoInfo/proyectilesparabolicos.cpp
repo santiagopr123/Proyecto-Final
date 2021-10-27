@@ -29,7 +29,9 @@ QRectF ProyectilesParabolicos::boundingRect() const
 
 void ProyectilesParabolicos::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(boundingRect());
+    QPixmap pixmap(":/Imagenes/Proyectiles.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(2);
 }
 
 void ProyectilesParabolicos::actualizarposicion()

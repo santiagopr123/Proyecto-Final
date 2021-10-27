@@ -19,13 +19,13 @@ Boss::Boss(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux,
 
     timer = new QTimer();
 
-    Escudo_1 = new EnemigoMovCircular(10,0,Scene);
+    Escudo_1 = new EnemigoMovCircular(10,70,0,Scene);
     Scene->addItem(Escudo_1);
-    Escudo_2 = new EnemigoMovCircular(10,1.5707963267948966192313216916398,Scene);
+    Escudo_2 = new EnemigoMovCircular(10,70,1.5707963267948966192313216916398,Scene);
     Scene->addItem(Escudo_2);
-    Escudo_3 = new EnemigoMovCircular(10,0.78539816339744830961566084581988,Scene);
+    Escudo_3 = new EnemigoMovCircular(10,75,0.78539816339744830961566084581988,Scene);
     Scene->addItem(Escudo_3);
-    Escudo_4 = new EnemigoMovCircular(10,2.3561944901923449288469825374596,Scene);
+    Escudo_4 = new EnemigoMovCircular(10,70,2.3561944901923449288469825374596,Scene);
     Scene->addItem(Escudo_4);
 
     connect(timer,SIGNAL(timeout()),SLOT(move()));
@@ -44,7 +44,9 @@ QRectF Boss::boundingRect() const
 
 void Boss::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/BossG.png");
+    painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+    setScale(1.7);
 }
 
 void Boss::setDeltaDesplazamientoY(double value)

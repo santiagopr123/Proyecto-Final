@@ -1,9 +1,9 @@
 #include "balasimple.h"
 
-BalaSimple::BalaSimple(int a, int al, int Op, double pos_x, double pos_y, QGraphicsScene *Scene_Aux)
+BalaSimple::BalaSimple(int r, int Op, double pos_x, double pos_y, QGraphicsScene *Scene_Aux)
 {
-    ancho = a;
-    alto = al;
+    radio = r;
+
     Posicion_x = pos_x;
     Posicion_y = pos_y;
     Desplazamiento = 0;
@@ -27,12 +27,14 @@ BalaSimple::~BalaSimple()
 
 QRectF BalaSimple::boundingRect() const
 {
-    return QRectF(-ancho/2,-alto/2,ancho,alto);
+    return QRectF(-radio,-radio, 2*radio, 2*radio);
 }
 
 void BalaSimple::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/balaPersonajes.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+
 }
 
 void BalaSimple::move()

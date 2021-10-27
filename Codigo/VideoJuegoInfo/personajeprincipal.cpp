@@ -15,7 +15,7 @@ double PersonajePrincipal::getVida() const
     return Vida;
 }
 
-PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_y, double Vel_x, double Vel_y, double Ace_x, double Ace_y, QGraphicsScene *Scene_Aux, Vista *Aux_Parametros, int OpB)
+PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_y, double Vel_x, double Vel_y, double Ace_x, double Ace_y, QGraphicsScene *Scene_Aux, Vista *Aux_Parametros, int OpB, int FlagP)
 {
     ancho = An;
     alto = Al;
@@ -35,6 +35,7 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_
     Contador = 0;
     level_2 = false;
     OpcionPersonaje = OpB;
+    FlagPixmap = FlagP;
 
     setPos(Posicion_x,Posicion_y);
 
@@ -43,7 +44,7 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al, double Pos_x, double Pos_
     Timer->start(30);
 }
 
-PersonajePrincipal::PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros,double health,int OpB)
+PersonajePrincipal::PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros,double health,int OpB, int FlagP)
 {
     ancho = An;
     alto = Al;
@@ -63,6 +64,8 @@ PersonajePrincipal::PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,
     Contador = 0;
     level_2 = false;
     OpcionPersonaje = OpB;
+    FlagPixmap = FlagP;
+
 
     setPos(Posicion_x,Posicion_y);
 
@@ -83,7 +86,29 @@ QRectF PersonajePrincipal::boundingRect() const
 
 void PersonajePrincipal::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    if(FlagPixmap == 0)
+    {
+        painter->setBrush(Qt::yellow);
+        painter->drawRect(boundingRect());
+    }
+    else if(FlagPixmap == 1)
+    {
+        painter->setBrush(Qt::red);
+        painter->drawRect(boundingRect());
+    }
+    else if(FlagPixmap == 2)
+    {
+        QPixmap pixmap(":/Imagenes/player_1.png");
+        painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+        setScale(2);
+    }
+    else
+    {
+        QPixmap pixmap(":/Imagenes/player-2.png");
+        painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+        setScale(2);
+    }
+
     Q_UNUSED(widget);
     Q_UNUSED(option);
 }
@@ -154,7 +179,7 @@ void PersonajePrincipal::DisparaArriba()
 {
     if(Disparos > 0 && Disparos < 3)
     {
-        Bullet = new BalaSimple(10,4,0,pos().x(),pos().y(),Scene);
+        Bullet = new BalaSimple(7,0,pos().x(),pos().y(),Scene);
         Scene->addItem(Bullet);
         Disparos--;
     }
@@ -165,7 +190,7 @@ void PersonajePrincipal::DispararDerecha()
     if(Disparos > 0 && Disparos < 3)
     {
 
-        Bullet = new BalaSimple(10,4,1,pos().x(),pos().y(),Scene);
+        Bullet = new BalaSimple(7,1,pos().x(),pos().y(),Scene);
         Scene->addItem(Bullet);
         Disparos--;
     }
@@ -176,7 +201,7 @@ void PersonajePrincipal::DispararIzquierda()
     if(Disparos > 0 && Disparos < 3)
     {
 
-        Bullet = new BalaSimple(10,4,2,pos().x(),pos().y(),Scene);
+        Bullet = new BalaSimple(7,2,pos().x(),pos().y(),Scene);
         Scene->addItem(Bullet);
         Disparos--;
     }

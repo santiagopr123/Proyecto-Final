@@ -9,6 +9,7 @@ debug/enemigometioritos.o
 debug/enemigomovcircular.o
 debug/enemigopendular.o
 debug/enemigosimple.o
+debug/fondosgame.o
 debug/gestorinfo.o
 debug/main.o
 debug/menu.o
@@ -17,6 +18,7 @@ debug/proyectilesparabolicos.o
 debug/trampolines.o
 debug/ventanap.o
 debug/vista.o
+debug/qrc_GameI.o
 debug/moc_bala_caidalibre.o
 debug/moc_balamovarmsim.o
 debug/moc_balasimple.o
