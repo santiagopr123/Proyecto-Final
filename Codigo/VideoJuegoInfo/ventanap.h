@@ -41,7 +41,7 @@ class VentanaP : public QMainWindow
     Q_OBJECT
 
 public:
-    VentanaP(QWidget *parent = nullptr);
+    //VentanaP(QWidget *parent = nullptr);
     VentanaP(GestorInfo *GestorAux, QWidget *parent = nullptr);
     ~VentanaP();
 

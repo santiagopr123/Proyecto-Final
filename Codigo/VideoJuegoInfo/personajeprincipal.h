@@ -10,10 +10,13 @@
 
 #include "balasimple.h"
 #include "balamovarmsim.h"
+#include "bala_caidalibre.h"
 #include "vista.h"
 #include "trampolines.h"
 #include "door.h"
 #include "proyectilesparabolicos.h"
+#include "enemigoamortiguado.h"
+#include "enemigosimple.h"
 
 class PersonajePrincipal:public QObject, public QGraphicsItem
 {

@@ -53,7 +53,7 @@ void ProyectilesParabolicos::actualizarposicion()
         }
     }
 
-    if(this->pos().y() > 440)
+    if(this->pos().y() > 440 || this->pos().y() < -5 || this->pos().x()>1110 || this->pos().x()<0)
     {
         Scenes->removeItem(this);
         delete this;

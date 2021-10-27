@@ -1,5 +1,10 @@
 #include "gestorinfo.h"
 
+GestorInfo::GestorInfo()
+{
+
+}
+
 GestorInfo::GestorInfo(string NameUIngresado, string PasswordIngresado)
 {
     StartGame = ExisteUsuario(NameUIngresado,PasswordIngresado);
@@ -14,8 +19,6 @@ GestorInfo::GestorInfo(string NameUIngresado, string PasswordIngresado, bool Pla
 
 void GestorInfo::IdentificadorVariables(const std::string &Phrase)
 {
-    //std::cout<<"la frase es "<<Phrase<<std::endl;
-
     std::stringstream s(Phrase);
 
     int cont = 0;
@@ -103,7 +106,6 @@ void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool Cantid
     string FraseFichero;
     int Contador = 1,CLineas = CantidadLineasArchivo();
 
-
     Archivo.open("../VideoJuegoInfo/Usuarios.txt");
     Escribir.open("../VideoJuegoInfo/Rescribir.txt",ios::out);
 
@@ -132,6 +134,7 @@ void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool Cantid
                 Escribir<<FraseFichero<<endl;
             }
         }
+        Contador++;
     }
 
     Archivo.close();
@@ -139,6 +142,32 @@ void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool Cantid
     remove("../VideoJuegoInfo/Usuarios.txt");
     rename("../VideoJuegoInfo/Rescribir.txt","../VideoJuegoInfo/Usuarios.txt");
 
+}
+
+void GestorInfo::InscribirNuevoJugador(string NameUIngresado, string PasswordIngresado, string PlayerCouple, double Health1, double Health2)
+{
+
+    Escribir.open("../VideoJuegoInfo/Usuarios.txt",ios::app);
+
+    if(CantidadLineasArchivo() == 0)
+    {
+        Escribir<<NameUIngresado<<"-"<<PasswordIngresado<<"-"<<PlayerCouple<<"-"<<Health1<<"-"<<Health2<<"-"<<0<<"-"<<1;
+    }
+    else
+    {
+        Escribir<<endl<<NameUIngresado<<"-"<<PasswordIngresado<<"-"<<PlayerCouple<<"-"<<Health1<<"-"<<Health2<<"-"<<0<<"-"<<1;
+
+    }
+
+     NameU = NameUIngresado;
+     Password= PasswordIngresado;
+     MultiP = PlayerCouple;
+     HealthFPlayer = to_string(Health1);
+     HealthSPlayer = to_string(Health2);
+     Score = "0";
+     Level = "1";
+
+     Escribir.close();
 }
 
 string GestorInfo::bool_string(bool Boolean) const

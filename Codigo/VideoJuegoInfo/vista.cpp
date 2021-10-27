@@ -116,6 +116,7 @@ void Vista::decreaseHealthP2(double CantidadVP)
 
 void Vista::IncreaseScore(int CantidadPP)
 {
+
     PuntajeP+=CantidadPP;
     if(FlagTiempoLevel == true)
     {

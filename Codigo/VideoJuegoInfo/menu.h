@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <string>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "ventanap.h"
 #include "gestorinfo.h"
@@ -22,7 +23,10 @@ public:
     ~Menu();
 
 private slots:
-    void on_pushButton_clicked();
+    void BotonJugadorYaRegistrado();
+    void Registro();
+    void JuegoMultijugador();
+    void Salir();
 
 private:
     Ui::Menu *ui;
@@ -36,7 +40,7 @@ private:
 
     bool GetJuego;
 
-    void cerrar();
 };
+
 
 #endif // MENU_H
