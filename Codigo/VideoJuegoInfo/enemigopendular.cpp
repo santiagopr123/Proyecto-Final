@@ -60,7 +60,9 @@ QRectF EnemigoPendular::boundingRect() const
 
 void EnemigoPendular::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(-radio,-radio, 2*radio, 2*radio);
+    QPixmap pixmap(":/Imagenes/Enemypend.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(1.7);
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }

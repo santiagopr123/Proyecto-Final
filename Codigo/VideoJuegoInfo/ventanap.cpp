@@ -1,30 +1,6 @@
 #include "ventanap.h"
 #include "ui_ventanap.h"
-/*
-VentanaP::VentanaP(QWidget *parent): QMainWindow(parent),ui(new Ui::VentanaP)
-{
-    ui->setupUi(this);
 
-    Timer_1 = new QTimer;
-
-    Puntaje = 0;Puntaje_2 = 0;
-    VidaGlobal = 0;VidaGlobal_2 = 0;
-    Puntaje_Global = &Puntaje;
-    ContadorCrono = 0;
-
-    NombreU = "Santiago";
-    ClaveU = "123456";
-
-    //Multiplayer = true;
-    Multiplayer = false;
-
-    //Nivel1();
-    //Nivel2();
-    //Nivel3();
-
-
-}
-*/
 VentanaP::VentanaP(GestorInfo *GestorAux ,QWidget *parent): QMainWindow(parent),ui(new Ui::VentanaP)
 {
     ui->setupUi(this);
@@ -173,8 +149,6 @@ void VentanaP::Nivel1()
     FondoJuego->setPos(0,0);
     Ventana_1->addItem(FondoJuego);
 
-    Ventana_1->addLine(QLineF(10,450,1100,450),QPen(Qt::black));
-
     if(Multiplayer == true)
     {
         Parametros = new Vista(true);
@@ -217,13 +191,13 @@ void VentanaP::Nivel2()
     Nivel = 2;
 
     Ventana_2 = new QGraphicsScene();
-    //Ventana_2->setBackgroundBrush(QPixmap(":/Imagenes/FondoNivel2.jpg"));
-
 
     ui->graphicsView->setScene(Ventana_2);
     ui->graphicsView->setSceneRect(0,0,1100,500);
 
-    Ventana_2->addLine(QLineF(10,450,1100,450),QPen(Qt::black));
+    FondoJuego = new FondosGame(QPixmap(":/Imagenes/FondoNivel2.png"));
+    FondoJuego->setPos(0,0);
+    Ventana_2->addItem(FondoJuego);
 
     if(Multiplayer == true)
     {
@@ -285,12 +259,14 @@ void VentanaP::Nivel3()
     Nivel = 3;
 
     Ventana_3 = new QGraphicsScene();
-    //Ventana_3->setBackgroundBrush(QPixmap(":/Imagenes/FondoNivel3.png"));
 
     ui->graphicsView->setScene(Ventana_3);
     ui->graphicsView->setSceneRect(0,0,1100,500);
 
 
+    FondoJuego = new FondosGame(QPixmap(":/Imagenes/FondoNivel3.png"));
+    FondoJuego->setPos(0,0);
+    Ventana_3->addItem(FondoJuego);
 
     if(Multiplayer == true)
     {

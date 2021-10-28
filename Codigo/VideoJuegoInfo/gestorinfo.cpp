@@ -67,25 +67,11 @@ void GestorInfo::IdentificadorVariables(const std::string &Phrase)
     }
 }
 
-int GestorInfo::CantidadLineasArchivo()
-{
-    std::string FraseFichero;
-    int Contador = 0;
-    Archivo.open("../VideoJuegoInfo/Usuarios.txt");
-
-    while(std::getline(Archivo,FraseFichero))
-    {
-        Contador++;
-    }
-
-    Archivo.close();
-
-    return Contador;
-}
-
 bool GestorInfo::ExisteUsuario(std::string UsuarioExiste, std::string ClaveExiste)
 {
-    std::string FraseFichero;
+    string FraseFichero;
+    ifstream Archivo;
+
     Archivo.open("../VideoJuegoInfo/Usuarios.txt");
 
     while(std::getline(Archivo,FraseFichero))
@@ -103,8 +89,26 @@ bool GestorInfo::ExisteUsuario(std::string UsuarioExiste, std::string ClaveExist
 
 void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool CantidadUsers, double Health1, double Health2, int Score, int NivelU)
 {
+
+    ifstream Archivoaux;
+    string FraseFichero_0;
+    int ContadorLineas = 0;
+
+    Archivoaux.open("../VideoJuegoInfo/Usuarios.txt",ios::in);
+
+    while(getline(Archivoaux, FraseFichero_0))
+    {
+        ContadorLineas++;
+    }
+
+    Archivoaux.close();
+
+    ifstream Archivo;
+    ofstream Escribir;
+
     string FraseFichero;
-    int Contador = 1,CLineas = CantidadLineasArchivo();
+    int Contador;
+    Contador = 1;
 
     Archivo.open("../VideoJuegoInfo/Usuarios.txt");
     Escribir.open("../VideoJuegoInfo/Rescribir.txt",ios::out);
@@ -114,7 +118,7 @@ void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool Cantid
         IdentificadorVariables(FraseFichero);
         if(NameU == Usuario && Password == Clave)
         {
-            if(Contador == CLineas)
+            if(Contador == ContadorLineas)
             {
                 Escribir<<Usuario<<"-"<<Clave<<"-"<<bool_string(CantidadUsers)<<"-"<<Health1<<"-"<<Health2<<"-"<<Score<<"-"<<NivelU;
             }
@@ -125,7 +129,8 @@ void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool Cantid
         }
         else
         {
-            if(Contador == CLineas)
+
+            if(Contador == ContadorLineas)
             {
                 Escribir<<FraseFichero;
             }
@@ -146,10 +151,23 @@ void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool Cantid
 
 void GestorInfo::InscribirNuevoJugador(string NameUIngresado, string PasswordIngresado, string PlayerCouple, double Health1, double Health2)
 {
+    ifstream Archivoaux;
+    string FraseFichero_0;
+    int ContadorLineas = 0;
 
+    Archivoaux.open("../VideoJuegoInfo/Usuarios.txt",ios::in);
+
+    while(getline(Archivoaux, FraseFichero_0))
+    {
+        ContadorLineas++;
+    }
+
+    Archivoaux.close();
+
+    ofstream Escribir;
     Escribir.open("../VideoJuegoInfo/Usuarios.txt",ios::app);
 
-    if(CantidadLineasArchivo() == 0)
+    if(ContadorLineas == 0)
     {
         Escribir<<NameUIngresado<<"-"<<PasswordIngresado<<"-"<<PlayerCouple<<"-"<<Health1<<"-"<<Health2<<"-"<<0<<"-"<<1;
     }

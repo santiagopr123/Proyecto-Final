@@ -21,7 +21,7 @@ private:
     double Amplitud,masa,Constante_elastica;
     double Frecuencia_angular;
     double delta;
-    int alto,ancho;
+    int radio;
     int Longitud_Natural;
     int Option;
 

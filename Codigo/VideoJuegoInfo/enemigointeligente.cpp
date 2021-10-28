@@ -57,7 +57,6 @@ EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux,
 EnemigoInteligente::~EnemigoInteligente()
 {
     delete Timer;
-
 }
 
 QRectF EnemigoInteligente::boundingRect() const
@@ -67,15 +66,16 @@ QRectF EnemigoInteligente::boundingRect() const
 
 void EnemigoInteligente::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/EnemyS.png");
+    painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+    setScale(5);
+
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
 
 void EnemigoInteligente::MoveAnDCreateBullet()
 {
-
-
     if(this->collidesWithItem(Character))
     {
         Character->RestarVida(1);

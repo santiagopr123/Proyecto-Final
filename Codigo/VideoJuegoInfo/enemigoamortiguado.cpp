@@ -57,7 +57,9 @@ QRectF EnemigoAmortiguado::boundingRect() const
 
 void EnemigoAmortiguado::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(boundingRect());
+    QPixmap pixmap(":/Imagenes/Amortiguacionenemy.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(1.7);
 }
 
 void EnemigoAmortiguado::move()

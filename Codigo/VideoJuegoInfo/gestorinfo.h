@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+#include <QDebug>
 
 using namespace std;
 
@@ -21,9 +22,6 @@ private:
     string Score;
     string Level;
 
-    ifstream Archivo;
-    ofstream Escribir;
-
     bool StartGame,Multijugador;
 
 public:
@@ -32,7 +30,6 @@ public:
     GestorInfo(string NameUIngresado, string PasswordIngresado,bool PlayerCouple);
 
     void IdentificadorVariables(const std::string &Phrase);
-    int CantidadLineasArchivo();
     bool ExisteUsuario(std::string UsuarioExiste,std::string ClaveExiste);
     void ReescribirInformacion(std::string Usuario, std::string Clave, bool CantidadUsers, double Health1, double Health2, int Score, int NivelU);
     void InscribirNuevoJugador(string NameUIngresado, string PasswordIngresado, string PlayerCouple, double Health1, double Health2);

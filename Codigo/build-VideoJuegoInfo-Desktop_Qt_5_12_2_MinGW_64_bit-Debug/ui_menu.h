@@ -25,7 +25,6 @@ class Ui_Menu
 {
 public:
     QWidget *centralwidget;
-    QPushButton *BotonRegistrarse;
     QPushButton *BotonYaResgistrado;
     QPushButton *BotonMulti;
     QLabel *label;
@@ -33,6 +32,8 @@ public:
     QLabel *label_2;
     QLineEdit *Password;
     QPushButton *QuiereSalir;
+    QPushButton *BotonRegistrarse;
+    QLabel *label_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -43,30 +44,37 @@ public:
         Menu->resize(800, 600);
         centralwidget = new QWidget(Menu);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        BotonRegistrarse = new QPushButton(centralwidget);
-        BotonRegistrarse->setObjectName(QString::fromUtf8("BotonRegistrarse"));
-        BotonRegistrarse->setGeometry(QRect(60, 240, 75, 23));
         BotonYaResgistrado = new QPushButton(centralwidget);
         BotonYaResgistrado->setObjectName(QString::fromUtf8("BotonYaResgistrado"));
-        BotonYaResgistrado->setGeometry(QRect(274, 240, 101, 23));
+        BotonYaResgistrado->setGeometry(QRect(280, 310, 99, 23));
         BotonMulti = new QPushButton(centralwidget);
         BotonMulti->setObjectName(QString::fromUtf8("BotonMulti"));
-        BotonMulti->setGeometry(QRect(520, 240, 75, 23));
+        BotonMulti->setGeometry(QRect(390, 310, 75, 23));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(90, 120, 51, 21));
+        label->setGeometry(QRect(210, 230, 41, 31));
         NombreUser = new QLineEdit(centralwidget);
         NombreUser->setObjectName(QString::fromUtf8("NombreUser"));
-        NombreUser->setGeometry(QRect(150, 120, 291, 20));
+        NombreUser->setGeometry(QRect(270, 230, 133, 20));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(76, 170, 61, 20));
+        label_2->setGeometry(QRect(200, 270, 54, 16));
         Password = new QLineEdit(centralwidget);
         Password->setObjectName(QString::fromUtf8("Password"));
-        Password->setGeometry(QRect(150, 170, 291, 20));
+        Password->setGeometry(QRect(270, 260, 133, 20));
         QuiereSalir = new QPushButton(centralwidget);
         QuiereSalir->setObjectName(QString::fromUtf8("QuiereSalir"));
-        QuiereSalir->setGeometry(QRect(290, 310, 75, 23));
+        QuiereSalir->setGeometry(QRect(300, 350, 75, 23));
+        BotonRegistrarse = new QPushButton(centralwidget);
+        BotonRegistrarse->setObjectName(QString::fromUtf8("BotonRegistrarse"));
+        BotonRegistrarse->setGeometry(QRect(200, 310, 75, 23));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(210, 100, 341, 111));
+        QFont font;
+        font.setFamily(QString::fromUtf8("NSimSun"));
+        font.setPointSize(20);
+        label_3->setFont(font);
         Menu->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Menu);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -84,13 +92,14 @@ public:
     void retranslateUi(QMainWindow *Menu)
     {
         Menu->setWindowTitle(QApplication::translate("Menu", "MainWindow", nullptr));
-        BotonRegistrarse->setText(QApplication::translate("Menu", "Jugar", nullptr));
         BotonYaResgistrado->setText(QApplication::translate("Menu", "Jugador registrado", nullptr));
         BotonMulti->setText(QApplication::translate("Menu", "Multijugador", nullptr));
         label->setText(QApplication::translate("Menu", "Nombre", nullptr));
         NombreUser->setText(QString());
         label_2->setText(QApplication::translate("Menu", "contrase\303\261a", nullptr));
         QuiereSalir->setText(QApplication::translate("Menu", "Salir", nullptr));
+        BotonRegistrarse->setText(QApplication::translate("Menu", "Jugar", nullptr));
+        label_3->setText(QApplication::translate("Menu", "Alien Invasion Game", nullptr));
     } // retranslateUi
 
 };

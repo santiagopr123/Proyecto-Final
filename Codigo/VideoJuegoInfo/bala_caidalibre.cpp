@@ -30,7 +30,9 @@ QRectF Bala_CaidaLibre::boundingRect() const
 
 void Bala_CaidaLibre::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/Metiorito.png");
+    painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+    setScale(3);
 }
 
 void Bala_CaidaLibre::MoveTheBullet()

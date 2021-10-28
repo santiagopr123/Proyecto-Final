@@ -10,8 +10,8 @@ EnemigoMeteoritos::EnemigoMeteoritos(double pos_x,double pos_y,int Limit_Inf, in
 
     Scene = Scene_Aux;
     Incremento = 3;
-    ancho = 10;
-    alto = 10;
+    ancho = 32;
+    alto = 25;
 
     setPos(Posicion_x,Posicion_y);
 
@@ -40,7 +40,9 @@ QRectF EnemigoMeteoritos::boundingRect() const
 
 void EnemigoMeteoritos::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/meteoroEnemy.png");
+    painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+    setScale(1.7);
 }
 
 void EnemigoMeteoritos::MoveEnemy()
