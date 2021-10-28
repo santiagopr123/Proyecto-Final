@@ -49,7 +49,6 @@ public:
 
 public slots:
     void MoveAnDCreateBullet();
-
 };
 
 

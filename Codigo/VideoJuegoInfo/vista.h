@@ -2,6 +2,7 @@
 #define VISTA_H
 
 #include <QGraphicsTextItem>
+#include <QDebug>
 
 class Vista: public QGraphicsTextItem
 {

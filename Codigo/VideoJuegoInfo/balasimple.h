@@ -15,8 +15,7 @@ class BalaSimple:public QObject,public QGraphicsItem
 
 private:
 
-    int ancho;
-    int alto;
+    int radio;
     double Posicion_x;
     double Posicion_y;
     int Option;
@@ -26,7 +25,7 @@ private:
     QGraphicsScene *Scene;
     QTimer * timer;
 public:
-    BalaSimple(int a, int al,int Op,double pos_x,double pos_y,QGraphicsScene *Scene_Aux);
+    BalaSimple(int r,int Op,double pos_x,double pos_y,QGraphicsScene *Scene_Aux);
     ~BalaSimple();
 
     QRectF boundingRect() const;

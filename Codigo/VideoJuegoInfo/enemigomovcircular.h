@@ -8,8 +8,10 @@
 #include <QPainter>
 #include <qdebug.h>
 #include <QTimer>
+#include <QPixmap>
 
 #include "balasimple.h"
+#include "proyectilesparabolicos.h"
 
 
 class EnemigoMovCircular:public QObject,public QGraphicsItem
@@ -31,7 +33,7 @@ private:
     QGraphicsScene *Scene;
 
 public:
-    EnemigoMovCircular(int r, double tiempo,QGraphicsScene *SceneAux);
+    EnemigoMovCircular(int r,int RC, double tiempo,QGraphicsScene *SceneAux);
     ~EnemigoMovCircular();
 
     QRectF boundingRect() const;

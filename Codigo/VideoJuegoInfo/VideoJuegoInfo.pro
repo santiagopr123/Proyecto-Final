@@ -20,7 +20,9 @@ SOURCES += \
     enemigomovcircular.cpp \
     enemigopendular.cpp \
     enemigosimple.cpp \
+    fondosgame.cpp \
     gestorinfo.cpp \
+    instrucciones.cpp \
     main.cpp \
     menu.cpp \
     personajeprincipal.cpp \
@@ -41,7 +43,9 @@ HEADERS += \
     enemigomovcircular.h \
     enemigopendular.h \
     enemigosimple.h \
+    fondosgame.h \
     gestorinfo.h \
+    instrucciones.h \
     menu.h \
     personajeprincipal.h \
     proyectilesparabolicos.h \
@@ -50,6 +54,7 @@ HEADERS += \
     vista.h
 
 FORMS += \
+    instrucciones.ui \
     menu.ui \
     ventanap.ui
 
@@ -57,3 +62,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    GameI.qrc

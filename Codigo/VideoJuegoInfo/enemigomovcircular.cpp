@@ -1,5 +1,6 @@
 #include "enemigomovcircular.h"
 
+//varibles las cuales se le asignan a la clase, primordiales para el movimiento circular
 void EnemigoMovCircular::setCentro_x(double value)
 {
     Centro_x = value;
@@ -10,15 +11,18 @@ void EnemigoMovCircular::setCentro_y(double value)
     Centro_y = value;
 }
 
-EnemigoMovCircular::EnemigoMovCircular(int r, double tiempo, QGraphicsScene *SceneAux)
+EnemigoMovCircular::EnemigoMovCircular(int r, int RC, double tiempo, QGraphicsScene *SceneAux)
 {
+    //se recibe el tiempo, mas especificamente el periodo y  un puntero a la escena, ademas el radio del centro
+    //de masa de la particula y el radio al centro del movimiento
     Velocidad_Angular = 2;
     DeltaTiempo = tiempo;
     radio = r;
-    Radio = 35;
+    Radio = RC;
     Scene = SceneAux;
 
 
+    //se crea el timer
     Timer = new QTimer;
     connect(Timer,SIGNAL(timeout()),this,SLOT(Move()));
     Timer->start(50);
@@ -37,13 +41,19 @@ QRectF EnemigoMovCircular::boundingRect() const
 
 void EnemigoMovCircular::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(boundingRect());
+
+    QPixmap pixmap(":/Imagenes/Escudoenemigo.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(1.7);
+
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
 
 void EnemigoMovCircular::Move()
 {
+    //ecuaciones del angulo respecto al tiempo y la velocidad angular constante
+    //la posicion ademas es respecto al radio de giro
     Angulo = Velocidad_Angular*DeltaTiempo;
 
     Posicion_x = Centro_x + (Radio*cos(Angulo));
@@ -53,11 +63,17 @@ void EnemigoMovCircular::Move()
 
     setPos(Posicion_x,Posicion_y);
 
+    //gestion de colisiones
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for(int i=0; i < colliding_items.size(); ++i)
     {
         QGraphicsItem *Elemento = colliding_items[i];
         if(typeid(BalaSimple) == typeid (*Elemento))
+        {
+            Scene->removeItem(Elemento);
+            delete Elemento;
+        }
+        if(typeid(ProyectilesParabolicos) == typeid (*Elemento))
         {
             Scene->removeItem(Elemento);
             delete Elemento;

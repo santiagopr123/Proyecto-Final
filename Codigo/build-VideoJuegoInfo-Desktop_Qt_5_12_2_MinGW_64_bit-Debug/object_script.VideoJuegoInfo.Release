@@ -9,7 +9,9 @@ release/enemigometioritos.o
 release/enemigomovcircular.o
 release/enemigopendular.o
 release/enemigosimple.o
+release/fondosgame.o
 release/gestorinfo.o
+release/instrucciones.o
 release/main.o
 release/menu.o
 release/personajeprincipal.o
@@ -17,6 +19,7 @@ release/proyectilesparabolicos.o
 release/trampolines.o
 release/ventanap.o
 release/vista.o
+release/qrc_GameI.o
 release/moc_bala_caidalibre.o
 release/moc_balamovarmsim.o
 release/moc_balasimple.o
@@ -27,6 +30,7 @@ release/moc_enemigometioritos.o
 release/moc_enemigomovcircular.o
 release/moc_enemigopendular.o
 release/moc_enemigosimple.o
+release/moc_instrucciones.o
 release/moc_menu.o
 release/moc_personajeprincipal.o
 release/moc_proyectilesparabolicos.o

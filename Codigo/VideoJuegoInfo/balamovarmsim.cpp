@@ -2,13 +2,14 @@
 
 balamovarmsim::balamovarmsim(double Pos_x, double Pos_y, int Long_N, int Op, QGraphicsScene *Scene_Aux)
 {
+    //se recibe la posicion de la clase,una longitud natural para que se mueva de manera correcta y la escena donde vamos
+    //a mostrar el objeto ademas se inicializan variables importantes como la amplitud o constantes elasticas
     Posicion_x = Pos_x;
     Posicion_y = Pos_y;
     Scene = Scene_Aux;
     Longitud_Natural = Long_N;
     delta = 0.4;
-    alto = 10;
-    ancho = 10;
+    radio = 15;
     masa = 10;
     Option = Op;
 
@@ -18,6 +19,7 @@ balamovarmsim::balamovarmsim(double Pos_x, double Pos_y, int Long_N, int Op, QGr
     Constante_elastica = 2;
     Frecuencia_angular = sqrt(Constante_elastica/masa);
 
+    //Se crea un QTimer para elmoviemiento de la bala
     Timer = new QTimer();
    connect(Timer,SIGNAL(timeout()),this,SLOT(MoveBullet()));
 
@@ -32,18 +34,23 @@ balamovarmsim::~balamovarmsim()
 
 QRectF balamovarmsim::boundingRect() const
 {
-    return QRectF(-ancho/2,-alto/2,ancho,alto);
+    return QRectF(-radio,-radio, 2*radio, 2*radio);
 }
 
 void balamovarmsim::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    //se le da imagen al objeto
+    QPixmap pixmap(":/Imagenes/Balaarmonica.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(1);
+
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
 
 void balamovarmsim::MoveBullet()
 {
+    //Slot el cual se le da al Qtimer.Aqui se gestiona el movieminto y coliciones del objeto
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for(int i=0; i < colliding_items.size(); ++i)
     {

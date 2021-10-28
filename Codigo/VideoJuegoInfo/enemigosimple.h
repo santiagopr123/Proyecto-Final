@@ -10,6 +10,7 @@
 
 #include "balasimple.h"
 #include "proyectilesparabolicos.h"
+#include "personajeprincipal.h"
 
 
 class EnemigoSimple:public QObject,public QGraphicsItem
@@ -18,13 +19,15 @@ class EnemigoSimple:public QObject,public QGraphicsItem
 private:
     int ancho;
     int alto;
-    QTimer *timer;
-    QGraphicsScene *Scene;
     double Posicion_x,Posicion_y;
     int *Puntaje;
 
+    QTimer *timer;
+    QGraphicsScene *Scene;
+    PersonajePrincipal *Personaje;
+
 public:
-    EnemigoSimple(int a, int al,double Pos_x,double Pos_y,QGraphicsScene *Scene_Aux,int *ApuntadorPuntaje);
+    EnemigoSimple(int a, int al,double Pos_x,double Pos_y,QGraphicsScene *Scene_Aux,int *ApuntadorPuntaje,PersonajePrincipal *PersonajeAux);
     ~EnemigoSimple();
 
     QRectF boundingRect() const;

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Instrucciones</class>
+ <widget class="QMainWindow" name="Instrucciones">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>10</y>
+      <width>331</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Sitka Text</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Instrucciones y consideraciones</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>120</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-Solo un jugador: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>150</y>
+      <width>701</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>1) En el caso de que sea solo un jugador podra mover a la izquierda con la letra A, hacia la derecha con la letra D y hacia arriba con la letra W.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>180</y>
+      <width>531</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Tambien podra dispara, mas especificamente hacia la derecha con la letra C y hacia la izquierda con la letra X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>210</y>
+      <width>701</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>2) en el caso de que se encuentre en el ultimo nivel, sobre naves espaciles solo se podra mover hacia la derecha con la letra D y hacia la izquierda</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>230</y>
+      <width>281</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>con la letra A, asi mismo solo podra disparar con la letra X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>260</y>
+      <width>701</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>3) Cada vez que pase de nivel, la partida se guardara sola</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>121</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-Multijugador:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>761</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>1) En el caso de que sea multijugador, el primer jugador  podra mover a la izquierda con la letra A, hacia la derecha con la letra D  y hacia arriba con la letra W.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>751</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> Tambien podra dispara, mas especificamente hacia la derecha con la letra C y hacia la izquierda con la letra X. En el caso del segundo personaje se podra</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>360</y>
+      <width>751</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> mover hacia arriba con la letra I, hacia la derecha con la letra L y hacia la izquierda con la letra J, Ademas disparara hacia la izquierda con la letra N y </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>380</y>
+      <width>181</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>y hacia la derecha con la letra N.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>410</y>
+      <width>751</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>2)en el caso de que se encuentre en el ultimo nivel, sobre naves espaciles el primer jugador solo  se podra mover hacia la derecha con la letra D</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>430</y>
+      <width>741</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string> hacia la izquierda con la letra A, para disparar solo con la letra X. Respeto al Segundo Jugador soo podra moverse a la izquierda con la letra J y a la </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>450</y>
+      <width>711</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>derecha con la letra L, para disparar solo con la letra M</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>480</y>
+      <width>701</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>3) Cada vez que pase de nivel, la partida se guardara sola</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>90</y>
+      <width>731</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bienvenido a alien invasion game,podras divertirte eliminando enemigos y esuivando obstaculos, llega al ultimo nivel para ganar, ¡EXITOS!</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="SalirIns">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>510</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>salir</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

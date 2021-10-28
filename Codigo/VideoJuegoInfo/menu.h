@@ -4,9 +4,11 @@
 #include <QMainWindow>
 #include <string>
 #include <QDebug>
+#include <QMessageBox>
 
 #include "ventanap.h"
 #include "gestorinfo.h"
+#include "instrucciones.h"
 
 
 namespace Ui {
@@ -22,13 +24,18 @@ public:
     ~Menu();
 
 private slots:
-    void on_pushButton_clicked();
+    void BotonJugadorYaRegistrado();
+    void Registro();
+    void JuegoMultijugador();
+    void Salir();
+    void InstrucionesGame();
 
 private:
     Ui::Menu *ui;
 
     VentanaP *Juego;
     GestorInfo *Login;
+    Instrucciones *Ins;
 
     std::string NameUIngresado;
     std::string PasswordIngresado;
@@ -36,7 +43,8 @@ private:
 
     bool GetJuego;
 
-    void cerrar();
+
 };
+
 
 #endif // MENU_H

@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Imagenes/balaPersonajes.png</file>
+        <file>Imagenes/BossG.png</file>
+        <file>Imagenes/enemy.png</file>
+        <file>Imagenes/Escudoenemigo.png</file>
+        <file>Imagenes/FondoNivel1.png</file>
+        <file>Imagenes/FondoNivel3.png</file>
+        <file>Imagenes/player_1.png</file>
+        <file>Imagenes/player-2.png</file>
+        <file>Imagenes/Proyectiles.png</file>
+        <file>Imagenes/FondoNivel2.png</file>
+        <file>Imagenes/EnemyS.png</file>
+        <file>Imagenes/meteoroEnemy.png</file>
+        <file>Imagenes/Metiorito.png</file>
+        <file>Imagenes/Balaarmonica.png</file>
+        <file>Imagenes/Enemypend.png</file>
+        <file>Imagenes/Amortiguacionenemy.png</file>
+        <file>Imagenes/Platforgame.png</file>
+        <file>Imagenes/NextLevel.png</file>
+        <file>Imagenes/Alien Invasion Game.png</file>
+    </qresource>
+</RCC>

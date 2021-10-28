@@ -1,9 +1,10 @@
 #include "balasimple.h"
 
-BalaSimple::BalaSimple(int a, int al, int Op, double pos_x, double pos_y, QGraphicsScene *Scene_Aux)
+BalaSimple::BalaSimple(int r, int Op, double pos_x, double pos_y, QGraphicsScene *Scene_Aux)
 {
-    ancho = a;
-    alto = al;
+    //Objeto que recibe un radio,posiciones y al escena donde se mostrara
+    radio = r;
+
     Posicion_x = pos_x;
     Posicion_y = pos_y;
     Desplazamiento = 0;
@@ -11,6 +12,7 @@ BalaSimple::BalaSimple(int a, int al, int Op, double pos_x, double pos_y, QGraph
     Option = Op;
     Scene = Scene_Aux;
 
+    //Se crea el Qtimer para el movieminto propio
     timer = new QTimer();
     setPos(Posicion_x,Posicion_y);
 
@@ -27,17 +29,23 @@ BalaSimple::~BalaSimple()
 
 QRectF BalaSimple::boundingRect() const
 {
-    return QRectF(-ancho/2,-alto/2,ancho,alto);
+    return QRectF(-radio,-radio, 2*radio, 2*radio);
 }
 
 void BalaSimple::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/balaPersonajes.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
+
 }
 
 void BalaSimple::move()
 {
 
+    //se gestiona el movieminto y velocidades de la bala, tambien el borrado de la misma
     if(Option == 0)
     {
         Posicion_y-=10;

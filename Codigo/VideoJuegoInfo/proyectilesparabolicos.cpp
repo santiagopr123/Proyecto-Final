@@ -2,6 +2,8 @@
 
 ProyectilesParabolicos::ProyectilesParabolicos(double x, double y, double v, double a, QGraphicsScene *Scene_Aux)
 {
+    //se recibe las posiciones iniciales, ademas de esto la velocidad y angulon que adquiere el objeto. Tmbien un puntero a la escena
+    //del Qmainwindow o la clase ventanap
     posicion_x = x;
     posicion_y = y;
     velocidad_inicial = v;
@@ -10,6 +12,7 @@ ProyectilesParabolicos::ProyectilesParabolicos(double x, double y, double v, dou
     Scenes = Scene_Aux;
     setPos(posicion_x,posicion_y);
 
+    //se crea un QTimer y se le asigna un slot para el movimiento
     timer = new QTimer();
 
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
@@ -29,12 +32,16 @@ QRectF ProyectilesParabolicos::boundingRect() const
 
 void ProyectilesParabolicos::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(boundingRect());
+    QPixmap pixmap(":/Imagenes/Proyectiles.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(2);
 }
 
 void ProyectilesParabolicos::actualizarposicion()
 {
 
+    //Ademas de ser la funcion que se llama en el slots move
+    //tambien se gestiona las collisiones del objeto
     calcularvelocidad();
     posicion_x = posicion_x+velocidad_x*delta;
     posicion_y = posicion_y+(velocidad_y*delta)+(0.5*gravedad*delta*delta);
@@ -53,7 +60,7 @@ void ProyectilesParabolicos::actualizarposicion()
         }
     }
 
-    if(this->pos().y() > 440)
+    if(this->pos().y() > 440 || this->pos().y() < -5 || this->pos().x()>1110 || this->pos().x()<0)
     {
         Scenes->removeItem(this);
         delete this;
@@ -62,6 +69,7 @@ void ProyectilesParabolicos::actualizarposicion()
 
 void ProyectilesParabolicos::calcularvelocidad()
 {
+    //Ecuaciones del moviemiento parabolico
     velocidad_x = velocidad_inicial*cos(angulo);
     velocidad_y = velocidad_inicial*sin(angulo)+gravedad*delta;
     angulo = atan2(velocidad_y,velocidad_x);
@@ -70,5 +78,6 @@ void ProyectilesParabolicos::calcularvelocidad()
 
 void ProyectilesParabolicos::move()
 {
+    //slot que llama una funcion que contiene las formulas del movimiento parabolico
     actualizarposicion();
 }

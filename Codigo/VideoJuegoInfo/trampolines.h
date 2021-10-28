@@ -3,6 +3,7 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QPixmap>
 
 class Trampolines: public QGraphicsItem
 {

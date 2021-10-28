@@ -7,13 +7,17 @@
 #include <QPainter>
 #include <QTimer>
 #include <typeinfo>
+#include <QPixmap>
 
 #include "balasimple.h"
 #include "balamovarmsim.h"
+#include "bala_caidalibre.h"
 #include "vista.h"
 #include "trampolines.h"
 #include "door.h"
 #include "proyectilesparabolicos.h"
+#include "enemigoamortiguado.h"
+#include "enemigomovcircular.h"
 
 class PersonajePrincipal:public QObject, public QGraphicsItem
 {
@@ -31,6 +35,7 @@ private:
     int Disparos,Contador;
     int DeltaPosx;
     int OpcionPersonaje;
+    int FlagPixmap;
 
 
     bool flag = true;
@@ -42,8 +47,8 @@ private:
     Vista *Parametros_Pantalla;
 
 public:
-    PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros,int OpB);
-    PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros,double health,int OpB);
+    PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros,int OpB, int FlagP);
+    PersonajePrincipal(int An, int Al,double Pos_x,double Pos_y,double Vel_x,double Vel_y,double Ace_x,double Ace_y,QGraphicsScene *Scene_Aux,Vista *Aux_Parametros,double health,int OpB,int FlagP);
     ~PersonajePrincipal();
 
     QRectF boundingRect() const;

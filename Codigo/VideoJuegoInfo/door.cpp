@@ -2,8 +2,9 @@
 
 Door::Door(double pos_x, double pos_y)
 {
-    ancho = 60;
-    alto = 40;
+    //se recibe posiciones y se inicializa tamaño de los objetos
+    ancho = 30;
+    alto = 30;
     Posicion_x = pos_x;
     Posicion_y = pos_y;
     setPos(Posicion_x,Posicion_y);
@@ -16,5 +17,10 @@ QRectF Door::boundingRect() const
 
 void Door::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawRect(boundingRect());
+    QPixmap pixmap(":/Imagenes/NextLevel.png");
+    painter->drawPixmap(-ancho/2,-alto/2,ancho,alto,pixmap);
+    setScale(1.2);
+
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
 }

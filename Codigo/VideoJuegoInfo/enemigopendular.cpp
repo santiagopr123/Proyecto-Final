@@ -2,6 +2,8 @@
 
 EnemigoPendular::EnemigoPendular(QGraphicsScene *Scene_Aux, PersonajePrincipal *Personaje_1, int *ApuntadorPuntaje)
 {
+    //contructor que recibe un puntero a una persona , auna escena y a una variable tipo inte para la gestion de
+    //eliminacion, movimiento del objeto
     Contador = 0;
     Scene = Scene_Aux;
     Flag = true;
@@ -10,6 +12,8 @@ EnemigoPendular::EnemigoPendular(QGraphicsScene *Scene_Aux, PersonajePrincipal *
     Character_1 = Personaje_1;
     Puntaje = ApuntadorPuntaje;
 
+    //se gestiona el movimiento a apartir del angulo,la longitud y posiciones, ademas de la velocidad angular
+    //asi el movimiento no es perpetuo
     Angulo_Inicial = asin(Posicion_x/Longitud);
     Velocidad_Angular_Inicial = 0;
     Aceleracion_Angular = -Aceleracion_Gravedad*sin(Angulo_Inicial);
@@ -60,7 +64,9 @@ QRectF EnemigoPendular::boundingRect() const
 
 void EnemigoPendular::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->drawEllipse(-radio,-radio, 2*radio, 2*radio);
+    QPixmap pixmap(":/Imagenes/Enemypend.png");
+    painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
+    setScale(1.7);
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
@@ -82,6 +88,8 @@ void EnemigoPendular::actualizar_posicion()
 {
     srand(time(NULL));
 
+    //aqui se llamda a la funcion calcular variables para calular los vaores necesarios para el objeto
+    //respecto al tiempo, ademas se gestiona la colisiones respecto a los personajes
     calcular_variables();
 
     Posicion_x = Longitud*sin(Angulo_Inicial);
@@ -106,6 +114,7 @@ void EnemigoPendular::actualizar_posicion()
     Velocidad_Angular_Inicial = Velocidad_Angular;
     Angulo_Inicial = Angulo;
 
+    //En esta seccion se crea los enemigos que saldran desde donde se ency¿euntra el enemigo pendular en ese instante
     if(Flag == true && FlagMulti == true)
     {
         int NumAleatorio = rand()%(2);
