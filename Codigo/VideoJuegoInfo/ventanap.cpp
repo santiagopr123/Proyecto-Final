@@ -234,10 +234,10 @@ void VentanaP::Nivel2()
     Platform = new Trampolines(620,100);
     Ventana_2->addItem(Platform);
 
-    ObstaculoEnemy = new EnemigoAmortiguado(200,230,20);
+    ObstaculoEnemy = new EnemigoAmortiguado(200,240,20);
     Ventana_2->addItem(ObstaculoEnemy);
 
-    ObstaculoEnemy = new EnemigoAmortiguado(700,230,17);
+    ObstaculoEnemy = new EnemigoAmortiguado(700,240,17);
     Ventana_2->addItem(ObstaculoEnemy);
 
     SmartEnemy = new EnemigoInteligente(10,10,Ventana_2,700,440,Player,Puntaje_Global,1000,720,2);
@@ -319,10 +319,14 @@ void VentanaP::Cronometro()
             if(Player->getVida() < 0 || Player_2->getVida() < 0)
             {
                 Timer_1->stop();
-                Ventana_1->clear();
-                delete Ventana_1;
-                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
                 this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
             }
         }
         else
@@ -330,10 +334,14 @@ void VentanaP::Cronometro()
             if(Player->getVida() < 0)
             {
                 Timer_1->stop();
-                Ventana_1->clear();
-                delete Ventana_1;
-                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
                 this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
             }
         }
 
@@ -363,7 +371,7 @@ void VentanaP::Cronometro()
         else
         {
 
-            if(Puntaje > 300 && Multiplayer == false)
+            if(Puntaje >= 400 && Multiplayer == false)
             {
                 Timer_1->stop();
                 VidaGlobal = Player->getVida();
@@ -371,7 +379,7 @@ void VentanaP::Cronometro()
                 delete Ventana_1;
                 Nivel2();
             }
-            else if(Puntaje > 500 && Multiplayer == true)
+            else if(Puntaje >= 600 && Multiplayer == true)
             {
                 Timer_1->stop();
                 VidaGlobal = Player->getVida();
@@ -379,6 +387,30 @@ void VentanaP::Cronometro()
                 Ventana_1->clear();
                 delete Ventana_1;
                 Nivel2();
+            }
+            else if(Puntaje < 400 && Multiplayer == false)
+            {
+                Timer_1->stop();
+                this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","No eliminaste suficientes enemigos",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
+            }
+            else if(Puntaje < 600 && Multiplayer == true)
+            {
+                Timer_1->stop();
+                this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","No eliminaron suficientes enemigos",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
             }
         }
     }
@@ -390,7 +422,7 @@ void VentanaP::Cronometro()
             Puntaje_2 = Puntaje;
         }
 
-        if(Multiplayer == true)
+        if(Multiplayer == true)//Condicional si algun jugador perdio
         {
             if(Player->getLevel_2() == true || Player_2->getLevel_2() == true )
             {
@@ -401,15 +433,20 @@ void VentanaP::Cronometro()
                 delete Ventana_2;
                 Nivel3();
             }
-
-            if(Player->getVida() < 0 || Player_2->getVida() < 0)
+            else if(Player->getVida() < 0 || Player_2->getVida() < 0)
             {
                 Timer_1->stop();
-                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
                 this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
             }
         }
-        else if(Multiplayer == false)
+        else if(Multiplayer == false)//Condicional si algun jugador perdio
         {
             if(Player->getLevel_2() == true)
             {
@@ -419,16 +456,19 @@ void VentanaP::Cronometro()
                 delete Ventana_2;
                 Nivel3();
             }
-
-            if(Player->getVida() < 0)
+            else if(Player->getVida() < 0)
             {
                 Timer_1->stop();
-                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
                 this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
             }
         }
-
-
     }
     else if(Nivel == 3)
     {
@@ -460,9 +500,28 @@ void VentanaP::Cronometro()
 
         if(ContadorBombsL3%NumEnemys == 0 && FlagParaEnemys == false)
         {
-            int num = 50 + rand()%(1051-50);
-            EnemigoSimple *enemy = new EnemigoSimple(40,40,num,0,Ventana_3,Puntaje_Global);
-            Ventana_3->addItem(enemy);
+            if(Multiplayer == true)
+            {
+                if(Player->getVida() > Player_2->getVida())
+                {
+                    int num = 50 + rand()%(1051-50);
+                    EnemigoSimple *enemy = new EnemigoSimple(40,40,num,0,Ventana_3,Puntaje_Global,Player);
+                    Ventana_3->addItem(enemy);
+                }
+                else
+                {
+                    int num = 50 + rand()%(1051-50);
+                    EnemigoSimple *enemy = new EnemigoSimple(40,40,num,0,Ventana_3,Puntaje_Global,Player_2);
+                    Ventana_3->addItem(enemy);
+                }
+            }
+            else
+            {
+                int num = 50 + rand()%(1051-50);
+                EnemigoSimple *enemy = new EnemigoSimple(40,40,num,0,Ventana_3,Puntaje_Global,Player);
+                Ventana_3->addItem(enemy);
+            }
+
         }
 
         TiempoJefeFinal++;
@@ -506,14 +565,58 @@ void VentanaP::Cronometro()
             if(EnemyBossFinal->getVida() < 0)
             {
                Timer_1->stop();
-               QMessageBox::information(this,"¡En Horabuena!","Ganaste");
                this->hide();
+
+               QMessageBox::StandardButton OPTION;
+               OPTION = QMessageBox::information(this,"¡En Horabuena!","Ganaste",QMessageBox::Ok);
+               if(OPTION == QMessageBox::Ok)
+               {
+                   exit(1);
+               }
             }
             else if(EnemyBossFinal->pos().y() > 450)
             {
                 Timer_1->stop();
-                QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo");
                 this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
+            }
+        }
+
+        //Saber si el usuarios tiene vida
+        if(Multiplayer == true)
+        {
+            if(Player->getVida()<0 || Player_2->getVida()<0)
+            {
+                Timer_1->stop();
+                this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
+            }
+        }
+        else
+        {
+            if(Player->getVida()<0)
+            {
+                Timer_1->stop();
+                this->hide();
+
+                QMessageBox::StandardButton OPTION;
+                OPTION = QMessageBox::information(this,"¡Perdiste!","vuelve a intertarlo",QMessageBox::Ok);
+                if(OPTION == QMessageBox::Ok)
+                {
+                    exit(1);
+                }
             }
         }
 

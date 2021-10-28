@@ -22,6 +22,7 @@ SOURCES += \
     enemigosimple.cpp \
     fondosgame.cpp \
     gestorinfo.cpp \
+    instrucciones.cpp \
     main.cpp \
     menu.cpp \
     personajeprincipal.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     enemigosimple.h \
     fondosgame.h \
     gestorinfo.h \
+    instrucciones.h \
     menu.h \
     personajeprincipal.h \
     proyectilesparabolicos.h \
@@ -52,6 +54,7 @@ HEADERS += \
     vista.h
 
 FORMS += \
+    instrucciones.ui \
     menu.ui \
     ventanap.ui
 

@@ -11,6 +11,7 @@ debug/enemigopendular.o
 debug/enemigosimple.o
 debug/fondosgame.o
 debug/gestorinfo.o
+debug/instrucciones.o
 debug/main.o
 debug/menu.o
 debug/personajeprincipal.o
@@ -29,6 +30,7 @@ debug/moc_enemigometioritos.o
 debug/moc_enemigomovcircular.o
 debug/moc_enemigopendular.o
 debug/moc_enemigosimple.o
+debug/moc_instrucciones.o
 debug/moc_menu.o
 debug/moc_personajeprincipal.o
 debug/moc_proyectilesparabolicos.o

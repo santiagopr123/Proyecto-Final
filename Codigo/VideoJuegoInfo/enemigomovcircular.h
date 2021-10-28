@@ -11,6 +11,7 @@
 #include <QPixmap>
 
 #include "balasimple.h"
+#include "proyectilesparabolicos.h"
 
 
 class EnemigoMovCircular:public QObject,public QGraphicsItem

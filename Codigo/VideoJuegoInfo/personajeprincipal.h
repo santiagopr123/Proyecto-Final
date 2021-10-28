@@ -17,7 +17,7 @@
 #include "door.h"
 #include "proyectilesparabolicos.h"
 #include "enemigoamortiguado.h"
-#include "enemigosimple.h"
+#include "enemigomovcircular.h"
 
 class PersonajePrincipal:public QObject, public QGraphicsItem
 {

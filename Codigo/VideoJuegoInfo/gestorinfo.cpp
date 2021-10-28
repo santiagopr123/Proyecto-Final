@@ -7,11 +7,13 @@ GestorInfo::GestorInfo()
 
 GestorInfo::GestorInfo(string NameUIngresado, string PasswordIngresado)
 {
+    //constructor sobrecargado que recibe nombre  clave del usuario para validacion
     StartGame = ExisteUsuario(NameUIngresado,PasswordIngresado);
 }
 
 GestorInfo::GestorInfo(string NameUIngresado, string PasswordIngresado, bool PlayerCouple)
 {   
+    //constructor sobrecargado que recibe nombre  clave del usuario para validacion y una bandera para el multijugador
     Multijugador = PlayerCouple;
     StartGame = ExisteUsuario(NameUIngresado,PasswordIngresado);
 
@@ -19,6 +21,8 @@ GestorInfo::GestorInfo(string NameUIngresado, string PasswordIngresado, bool Pla
 
 void GestorInfo::IdentificadorVariables(const std::string &Phrase)
 {
+    //funcion que recibe una frase, y apartir del metodo getline identifico
+    //las variables importantes separadas por el caracter -> -
     std::stringstream s(Phrase);
 
     int cont = 0;
@@ -69,6 +73,8 @@ void GestorInfo::IdentificadorVariables(const std::string &Phrase)
 
 bool GestorInfo::ExisteUsuario(std::string UsuarioExiste, std::string ClaveExiste)
 {
+    //funcion que abre un archivo en modo lectura para verificar que dicho usuario existe.
+    //Retorna true si existe en la base de datos o false sino existe
     string FraseFichero;
     ifstream Archivo;
 
@@ -89,7 +95,8 @@ bool GestorInfo::ExisteUsuario(std::string UsuarioExiste, std::string ClaveExist
 
 void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool CantidadUsers, double Health1, double Health2, int Score, int NivelU)
 {
-
+    //Funcion que recibe dos strings, una bandera si habra muktijugadir, salud de los jugadore
+    //basicamente cada vez que llega a un checkpoint se cambio la informacion del usuario
     ifstream Archivoaux;
     string FraseFichero_0;
     int ContadorLineas = 0;
@@ -151,12 +158,15 @@ void GestorInfo::ReescribirInformacion(string Usuario, string Clave, bool Cantid
 
 void GestorInfo::InscribirNuevoJugador(string NameUIngresado, string PasswordIngresado, string PlayerCouple, double Health1, double Health2)
 {
+    //En el caso de que halla un nuevo jugador se la da la informacion necesaria
+    //y se lo lleva a la base de datos
     ifstream Archivoaux;
     string FraseFichero_0;
     int ContadorLineas = 0;
 
     Archivoaux.open("../VideoJuegoInfo/Usuarios.txt",ios::in);
 
+    //Se cuenta la cantidad de lineas que se tiene
     while(getline(Archivoaux, FraseFichero_0))
     {
         ContadorLineas++;
@@ -164,6 +174,7 @@ void GestorInfo::InscribirNuevoJugador(string NameUIngresado, string PasswordIng
 
     Archivoaux.close();
 
+    //Desde aqui se se escribe la informacion en el archivo
     ofstream Escribir;
     Escribir.open("../VideoJuegoInfo/Usuarios.txt",ios::app);
 
@@ -190,6 +201,7 @@ void GestorInfo::InscribirNuevoJugador(string NameUIngresado, string PasswordIng
 
 string GestorInfo::bool_string(bool Boolean) const
 {
+    //se cambia el tipo de dato de bool a string, parecido a un casting
     if(Boolean == true)
     {
         return "true";
@@ -202,6 +214,7 @@ string GestorInfo::bool_string(bool Boolean) const
 
 bool GestorInfo::string_bool(string Cadena) const
 {
+    //se cambia el tipo de dato de string a bool
     if(Cadena == "true")
     {
         return true;
@@ -212,6 +225,7 @@ bool GestorInfo::string_bool(string Cadena) const
     }
 }
 
+//desdd aqui los metodos son para retornar las variables importantes
 bool GestorInfo::getStartGame() const
 {
     return StartGame;

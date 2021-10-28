@@ -11,6 +11,7 @@ release/enemigopendular.o
 release/enemigosimple.o
 release/fondosgame.o
 release/gestorinfo.o
+release/instrucciones.o
 release/main.o
 release/menu.o
 release/personajeprincipal.o
@@ -29,6 +30,7 @@ release/moc_enemigometioritos.o
 release/moc_enemigomovcircular.o
 release/moc_enemigopendular.o
 release/moc_enemigosimple.o
+release/moc_instrucciones.o
 release/moc_menu.o
 release/moc_personajeprincipal.o
 release/moc_proyectilesparabolicos.o

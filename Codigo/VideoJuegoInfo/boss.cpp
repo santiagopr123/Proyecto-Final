@@ -7,6 +7,8 @@ double Boss::getVida() const
 
 Boss::Boss(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux, Vista *Para)
 {
+    //se recibe el tamaño que tendra ademas de las posiciones, un puntero para la escena y los parametros
+    //que se mostraran en escena, ademas para tener acceso a los metodos
     Scene = Scene_Aux;
     ancho = a;
     alto = al;
@@ -19,6 +21,8 @@ Boss::Boss(int a, int al, double Pos_x, double Pos_y, QGraphicsScene *Scene_Aux,
 
     timer = new QTimer();
 
+    //se inicializan dentro de este objeto, objetos de movimiento circular ya que la posicion de boss es fundamental
+    //para el movieminto de los objetos EnemigoMovCircular
     Escudo_1 = new EnemigoMovCircular(10,70,0,Scene);
     Scene->addItem(Escudo_1);
     Escudo_2 = new EnemigoMovCircular(10,70,1.5707963267948966192313216916398,Scene);

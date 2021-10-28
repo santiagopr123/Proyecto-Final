@@ -2,6 +2,7 @@
 
 Trampolines::Trampolines(double pos_x, double pos_y)
 {
+    //se reciben posiciones del objeto
     ancho = 60;
     alto = 20;
     Posicion_x = pos_x;

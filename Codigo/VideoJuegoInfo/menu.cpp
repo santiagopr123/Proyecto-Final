@@ -9,6 +9,7 @@ Menu::Menu(QWidget *parent) :QMainWindow(parent), ui(new Ui::Menu)
     connect(ui->BotonRegistrarse,SIGNAL(clicked()),this,SLOT(Registro()));
     connect(ui->BotonMulti,SIGNAL(clicked()),this,SLOT(JuegoMultijugador()));
     connect(ui->QuiereSalir,SIGNAL(clicked()),this,SLOT(Salir()));
+    connect(ui->BotonIns,SIGNAL(clicked()),this,SLOT(InstrucionesGame()));
 
 }
 
@@ -89,6 +90,12 @@ void Menu::JuegoMultijugador()
 void Menu::Salir()
 {
     exit(1);
+}
+
+void Menu::InstrucionesGame()
+{
+    Ins = new Instrucciones(this);
+    Ins->show();
 }
 
 

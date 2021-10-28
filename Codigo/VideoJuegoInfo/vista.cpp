@@ -11,6 +11,7 @@ Vista::Vista(QGraphicsItem *parent): QGraphicsTextItem(parent)
 
 Vista::Vista(bool FlagMulti, QGraphicsItem *parent): QGraphicsTextItem(parent)
 {
+    //constructor inicial el cual comienza con vida inicial de personaje para mostrarsu estatus en pantalla
     Salud_1 = 1000;
     Salud_2 = 1000;
 
@@ -37,6 +38,8 @@ Vista::Vista(bool FlagMulti, QGraphicsItem *parent): QGraphicsTextItem(parent)
 
 Vista::Vista(double Health, double Health2, int P, bool FlagMulti, QGraphicsItem * parent): QGraphicsTextItem(parent)
 {
+    //Este constructor de la clase, recibe la vida del jugador o de los jugadores diferente de la vida = 1000, que es
+    //la inicial, tambien el puntaje y si en ese momento hay o no multijugador
     Salud_1 = Health;
     Salud_2 = Health2;
     PuntajeP = P;
@@ -60,6 +63,7 @@ Vista::Vista(double Health, double Health2, int P, bool FlagMulti, QGraphicsItem
 
 void Vista::decreaseHealthP1(double CantidadVP)
 {
+    //metodo que se llama, para restar vida en pantalla al jugador numero uno
     Salud_1-=CantidadVP;
     if(FlagTiempoLevel == true)
     {
@@ -88,6 +92,7 @@ void Vista::decreaseHealthP1(double CantidadVP)
 
 void Vista::decreaseHealthP2(double CantidadVP)
 {
+    //metodo que se llama, para restar vida en pantalla al jugador numero dos
     Salud_2-=CantidadVP;
     if(FlagTiempoLevel == true)
     {
@@ -117,6 +122,7 @@ void Vista::decreaseHealthP2(double CantidadVP)
 void Vista::IncreaseScore(int CantidadPP)
 {
 
+    //metodo para incrementar el puntaje cada vez que se mata a un enemigo
     PuntajeP+=CantidadPP;
     if(FlagTiempoLevel == true)
     {
@@ -144,6 +150,7 @@ void Vista::IncreaseScore(int CantidadPP)
 
 void Vista::DecreaseTimeofsurvival()
 {
+    //metodo para el primer nivel, para el tiempo limitado que se tiene
     if(Tiempo_Level_1 > 0)
     {
         Tiempo_Level_1-=1;

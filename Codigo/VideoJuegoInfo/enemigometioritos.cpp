@@ -2,6 +2,7 @@
 
 EnemigoMeteoritos::EnemigoMeteoritos(double pos_x,double pos_y,int Limit_Inf, int Limit_Sup, QGraphicsScene *Scene_Aux)
 {
+    //Se recibe las posiciones, y los limites de movieminto , tambien un puntero de la escena
     Posicion_x = pos_x;
     Posicion_y = pos_y;
 
@@ -22,7 +23,7 @@ EnemigoMeteoritos::EnemigoMeteoritos(double pos_x,double pos_y,int Limit_Inf, in
     connect(Timer_2,SIGNAL(timeout()),this,SLOT(SpawnMeteoro()));
 
     Timer->start(70);
-    Timer_2->start(3500);
+    Timer_2->start(900);
 
 }
 
@@ -47,6 +48,7 @@ void EnemigoMeteoritos::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 
 void EnemigoMeteoritos::MoveEnemy()
 {
+    //movimiento rectilineo, se desplaza en el rango LI_s y LI_i y se le da la posicion de la escena
     if(Posicion_x>=Li_S)
     {
         Incremento = -3;
@@ -63,6 +65,7 @@ void EnemigoMeteoritos::MoveEnemy()
 
 void EnemigoMeteoritos::SpawnMeteoro()
 {
+    //se crea un objeto de tipo bala_caida libre, el objeto creado es independiente
     MeteoritosEnemy = new Bala_CaidaLibre(15,15,Scene,Posicion_x,Posicion_y);
     Scene->addItem(MeteoritosEnemy);
 }

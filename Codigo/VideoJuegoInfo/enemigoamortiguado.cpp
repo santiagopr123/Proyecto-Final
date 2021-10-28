@@ -2,6 +2,7 @@
 
 EnemigoAmortiguado::EnemigoAmortiguado(int Pos_x, int LongN, int Mass)
 {
+    //se inicilizan variables y constantes, ademas de que se reciben una masa, y posicion para el objeto
     constante_amortiguamiento = 0.1;
     Aceleracion_Gravedad = 9.8;
     Longitud_Natural = LongN;
@@ -44,6 +45,7 @@ void EnemigoAmortiguado::calcular_variables()
 
 void EnemigoAmortiguado::actualizar_posicion()
 {
+    //se calculan diversas variables respecto al tiempo para el movieminto no permetuo del oscilamiento
     calcular_variables();
     Posicion_y = Amplitud*Exponencial*cos((Frecuencia_Angular_amortiguada*tiempo));
     Amplitud_RespectoT = Amplitud*Exponencial;
@@ -60,9 +62,13 @@ void EnemigoAmortiguado::paint(QPainter *painter, const QStyleOptionGraphicsItem
     QPixmap pixmap(":/Imagenes/Amortiguacionenemy.png");
     painter->drawPixmap(-radio,-radio, 2*radio, 2*radio,pixmap);
     setScale(1.7);
+
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
 }
 
 void EnemigoAmortiguado::move()
 {
+    //se llamda la clase actualizar posicion
     actualizar_posicion();
 }

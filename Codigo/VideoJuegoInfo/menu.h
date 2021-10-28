@@ -8,6 +8,7 @@
 
 #include "ventanap.h"
 #include "gestorinfo.h"
+#include "instrucciones.h"
 
 
 namespace Ui {
@@ -27,18 +28,21 @@ private slots:
     void Registro();
     void JuegoMultijugador();
     void Salir();
+    void InstrucionesGame();
 
 private:
     Ui::Menu *ui;
 
     VentanaP *Juego;
     GestorInfo *Login;
+    Instrucciones *Ins;
 
     std::string NameUIngresado;
     std::string PasswordIngresado;
     bool Multijugador;
 
     bool GetJuego;
+
 
 };
 

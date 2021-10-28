@@ -293,18 +293,17 @@ void PersonajePrincipal::Calcular()
                 Parametros_Pantalla->decreaseHealthP2(10);
             }
         }
-
-        if(typeid(EnemigoSimple) == typeid (*Elemento))
+        if(typeid(EnemigoMovCircular) == typeid (*Elemento))
         {
-            Vida = Vida-10;
+            Vida = Vida-20;
 
             if(OpcionPersonaje == 0)
             {
-                Parametros_Pantalla->decreaseHealthP1(10);
+                Parametros_Pantalla->decreaseHealthP1(20);
             }
             else
             {
-                Parametros_Pantalla->decreaseHealthP2(10);
+                Parametros_Pantalla->decreaseHealthP2(20);
             }
         }
     }

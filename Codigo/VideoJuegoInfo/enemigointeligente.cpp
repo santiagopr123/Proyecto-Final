@@ -2,6 +2,9 @@
 
 EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux, double Pos_x, double Pos_y, bool *Flag_newEnemy, PersonajePrincipal *Personaje, int *ApuntadorPuntaje, int Op)
 {
+    //Se inicializa las variables con las recibidas, a y al son el tamaño del objeto, tambien se reciben punteros de tipo
+    //QGraphicsScene y bool para gestion de borrado y creacion de nuvos objetos de este tipo, ademas punteros a un personaje
+    //esto ya que el enemigo lo debe de seguir
     ancho = a;
     alto = al;
     Scene = Scene_Aux;
@@ -16,6 +19,7 @@ EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux,
     velocidad = 0;
     delta = 0.3;
     Gravedad = 9.8;
+    //para la asignacion del puntero de tipo PersonajePrincipal se crea un atributo de clase del mismo tipo
     Character = Personaje;
     Vida = 200;
 
@@ -29,6 +33,10 @@ EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux,
 
 EnemigoInteligente::EnemigoInteligente(int a, int al, QGraphicsScene *Scene_Aux, double Pos_x, double Pos_y, PersonajePrincipal *Personaje, int *ApuntadorPuntaje, int Lis, int Lii, int Op)
 {
+    //Se inicializa las variables con las recibidas, a y al son el tamaño del objeto, tambien se reciben punteros de tipo
+    //QGraphicsScene y bool para gestion de borrado y creacion de nuvos objetos de este tipo, ademas punteros a un personaje
+    //esto ya que el enemigo lo debe de seguir
+    //Tambien limites el cual sirven para que no se desplace fuera del rango
     ancho = a;
     alto = al;
     Scene = Scene_Aux;
@@ -76,6 +84,8 @@ void EnemigoInteligente::paint(QPainter *painter, const QStyleOptionGraphicsItem
 
 void EnemigoInteligente::MoveAnDCreateBullet()
 {
+    //gestion de las colisiones e interacciones con otros objetos , ademas de los limites de movimiento para seguir al personaje que
+    //se le asigne y un contador el cual le comunica al objeto que debe de disparar a la direccion el cual esta el personaje
     if(this->collidesWithItem(Character))
     {
         Character->RestarVida(1);
@@ -90,7 +100,7 @@ void EnemigoInteligente::MoveAnDCreateBullet()
             Vida-=50;
             Scene->removeItem(Elemento);
             delete Elemento;
-            if(Vida<0)
+            if(Vida<=0)
             {
                 if(Opcion == 1)
                 {
