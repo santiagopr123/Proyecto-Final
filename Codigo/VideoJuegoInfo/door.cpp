@@ -3,7 +3,7 @@
 Door::Door(double pos_x, double pos_y)
 {
     //se recibe posiciones y se inicializa tamaño de los objetos
-    ancho = 30;
+    ancho = 40;
     alto = 30;
     Posicion_x = pos_x;
     Posicion_y = pos_y;
